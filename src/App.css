@@ -1,41 +1,81 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+button {
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* form  */
+
+.form_container {
+  padding: 1px;
+  background-color: #fff;
+  width: 100%;
+  margin: 70px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.form_container form {
+  display: flex;
+  flex-flow: column wrap;
+  background-color: #6c63ff;
+  padding: 15px 10px;
+  margin: auto 0;
+  align-items: center;
+  border-radius: 25px;
 }
 
-.card {
-  padding: 2em;
+.form_container form h2 {
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 30px;
 }
 
-.read-the-docs {
-  color: #888;
+.form_container form input {
+  padding: 0.8rem 0.5rem;
+  width: 60%;
+  margin: 5px 0;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+}
+
+.form_container form div {
+  width: 60%;
+  position: relative;
+}
+
+.form_container form div input {
+  width: 100%;
+}
+
+.form_container form div i {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.form_container form input:focus {
+  background-color: rgb(241, 241, 241);
+}
+
+.form_container form button {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #4238fd;
+  margin: 10px 0;
+}
+
+.form_container form picture {
+  width: 45%;
+  padding: 5px;
+  margin: auto;
+}
+
+.form_container picture img {
+  object-fit: cover;
+  width: 100%;
 }
