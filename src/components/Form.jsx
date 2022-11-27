@@ -15,7 +15,7 @@ function Form() {
     message: "",
     sta: true,
   });
-  const userInfo = { name: userName, password };
+  const userInfo = { name: userName, password: password };
   const redirect = () => {
     validation.inLocal() ? (window.location = "/") : null;
   };

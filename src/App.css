@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 button {
@@ -9,32 +10,35 @@ button {
 /* form  */
 
 .form_container {
-  padding: 1px;
   background-color: #fff;
   width: 100%;
-  margin: 70px 0;
+  margin: 0;
+  height: 100vh;
+  padding: 0;
 }
 
 .form_container form {
   display: flex;
   flex-flow: column wrap;
   background-color: #6c63ff;
-  padding: 15px 10px;
+  padding: 20px 15px;
   margin: auto 0;
   align-items: center;
   border-radius: 25px;
+  height: 100%;
 }
 
 .form_container form h2 {
   color: #fff;
   font-family: "Courier New", Courier, monospace;
   font-size: 30px;
+  margin-top: 10px;
 }
 
 .form_container form input {
   padding: 0.8rem 0.5rem;
   width: 60%;
-  margin: 5px 0;
+  margin: 7px 0;
   outline: none;
   border: none;
   border-radius: 10px;
@@ -78,4 +82,70 @@ button {
 .form_container picture img {
   object-fit: cover;
   width: 100%;
+}
+
+/* Menu */
+
+.logo_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  padding: 0;
+}
+
+.logo {
+  color: white;
+}
+
+.menu_cont {
+  background-color: #413d96;
+  width: 40%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 100;
+  opacity: 0.9;
+  transition: all 2s;
+}
+
+.menu {
+  /* nav */
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  justify-content: left;
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  gap: 7%;
+  width: 100%;
+  padding: 0;
+}
+
+.menu ul li {
+  margin: 0.2rem 0.5rem;
+  list-style: none;
+  padding: 0.4rem;
+  border-radius: 10px;
+}
+
+.menu ul li:hover {
+  background: #5c56d1;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 20px;
 }
