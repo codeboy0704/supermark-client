@@ -10,12 +10,13 @@ function Form() {
   const [passwordType, setPasswordType] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [userError, setUserError] = useState({ message: "", sta: true });
+  const [userError, setUserError] = useState({ message: "", sta: false });
   const [passwordError, setPasswordError] = useState({
     message: "",
-    sta: true,
+    sta: false,
   });
-  const userInfo = { name: userName, password: password };
+  const userInfo = { username: userName, password: password };
+  console.log(userInfo);
   const redirect = () => {
     validation.inLocal() ? (window.location = "/") : null;
   };
@@ -32,7 +33,7 @@ function Form() {
 
   const sendUser = async (user) => {
     try {
-      const req = await axios.post("http://localhost:4000/user", user);
+      const req = await axios.post("/api/signup", user);
       const res = await req.data;
       return res;
     } catch (e) {
@@ -52,11 +53,10 @@ function Form() {
       setError: handlePasswordError,
     });
 
-    if (!userVAl.sta || !passVal.sta) {
+    if (userVAl.sta || passVal.sta) {
       return;
     } else {
       sendUser(user);
-      saveInLocal(user);
       setUserName("");
       setPassword("");
       redirect();
@@ -65,50 +65,52 @@ function Form() {
   return (
     <div className="form_container">
       <form>
-        <h2>Sign Up</h2>
-        <input
-          type="text"
-          placeholder="User"
-          value={userName}
-          onChange={(e) => {
-            setUserName(e.target.value);
-            setUserError({ message: "", sta: true });
-          }}
-          style={{ background: !userError.sta ? "#df7f7f" : null }}
-        />
-        <small style={{ color: "#fff", fontSize: "15px" }}>
-          {userError.message}
-        </small>
-        <div>
+        <div className="form_txt">
+          <h2>Sign Up</h2>
           <input
-            type={passwordType ? "text" : "password"}
-            placeholder="Password"
-            value={password}
+            type="text"
+            placeholder="User"
+            value={userName}
             onChange={(e) => {
-              setPassword(e.target.value);
+              setUserName(e.target.value);
+              setUserError({ message: "", sta: true });
             }}
-            style={{ background: !passwordError.sta ? "#df7f7f" : null }}
-          ></input>
-          <i
-            onClick={() => {
-              setPasswordType((sta) => !sta);
-            }}
-            className="bx bx-show bx-sm"
-          ></i>
+            style={{ background: userError.sta ? "#df7f7f" : null }}
+          />
           <small style={{ color: "#fff", fontSize: "15px" }}>
-            {passwordError.message}
+            {userError.message}
           </small>
+          <div>
+            <input
+              type={passwordType ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              style={{ background: passwordError.sta ? "#df7f7f" : null }}
+            ></input>
+            <i
+              onClick={() => {
+                setPasswordType((sta) => !sta);
+              }}
+              className="bx bx-show bx-sm"
+            ></i>
+            <small style={{ color: "#fff", fontSize: "15px" }}>
+              {passwordError.message}
+            </small>
+          </div>
+          <button
+            className="sign_btn"
+            onClick={(e) => {
+              e.preventDefault();
+              saveUser(userInfo);
+            }}
+          >
+            Sign Up
+          </button>
         </div>
 
-        <button
-          className="sign_btn"
-          onClick={(e) => {
-            e.preventDefault();
-            saveUser(userInfo);
-          }}
-        >
-          Sign Up
-        </button>
         <picture>
           <img src={Auth} alt="sign up" />
         </picture>

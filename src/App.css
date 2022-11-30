@@ -22,17 +22,29 @@ button {
   flex-flow: column wrap;
   background-color: #6c63ff;
   padding: 20px 15px;
-  margin: auto 0;
+  margin: 0;
   align-items: center;
-  border-radius: 25px;
+  border-radius: 10px;
   height: 100%;
+  justify-content: center;
 }
 
-.form_container form h2 {
+.form_txt {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60%;
+  margin: 5x 10px 25px 1px;
+  /* padding: 20px; */
+}
+
+.form_txt h2 {
   color: #fff;
   font-family: "Courier New", Courier, monospace;
   font-size: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .form_container form input {
@@ -44,12 +56,12 @@ button {
   border-radius: 10px;
 }
 
-.form_container form div {
+.form_txt div {
   width: 60%;
   position: relative;
 }
 
-.form_container form div input {
+.form_txt div input {
   width: 100%;
 }
 
@@ -74,9 +86,9 @@ button {
 }
 
 .form_container form picture {
-  width: 45%;
+  width: 150px;
   padding: 5px;
-  margin: auto;
+  margin: 0;
 }
 
 .form_container picture img {
@@ -148,4 +160,28 @@ button {
   text-decoration: none;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 20px;
+}
+
+/* Tablet design  */
+
+@media (min-width: 550px) {
+  .form_txt {
+    grid-column: 1/2;
+    grid-row: 1/5;
+    gap: 3%;
+  }
+
+  .form_container form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 140px);
+    padding: 0;
+  }
+
+  .form_container form picture {
+    grid-column: 2/4;
+    grid-row: 2/4;
+    width: 70%;
+    padding-top: 30px;
+  }
 }
