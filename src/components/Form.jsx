@@ -5,7 +5,7 @@ import Auth from "../images/auth.svg";
 import Completed from "../images/auth_completed.svg";
 import validation, { userValidation } from "../validations/signUp.validation";
 import { saveInLocal } from "../utils/save";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 function Form() {
   const [passwordType, setPasswordType] = useState(false);
   const [userName, setUserName] = useState("");
@@ -15,52 +15,35 @@ function Form() {
     message: "",
     sta: false,
   });
+
   const userInfo = { username: userName, password: password };
   console.log(userInfo);
-  const redirect = () => {
-    validation.inLocal() ? (window.location = "/") : null;
-  };
-  useEffect(() => {
-    redirect();
-  }, []);
-  const handleUserError = (obj) => {
-    return setUserError(obj);
-  };
+  // const redirect = () => {
+  //   validation.inLocal() ? (window.location = "/") : null;
+  // };
 
-  const handlePasswordError = (obj) => {
-    return setPasswordError(obj);
-  };
+  // const handleUserError = (obj) => {
+  //   return setUserError(obj);
+  // };
+
+  // const handlePasswordError = (obj) => {
+  //   return setPasswordError(obj);
+  // };
 
   const sendUser = async (user) => {
     try {
       const req = await axios.post("/api/signup", user);
       const res = await req.data;
+      if (res.message) console.log(res);
       return res;
     } catch (e) {
-      console.error(e);
+      setUserError({ message: e.message });
+      console.error(e.message);
     }
   };
 
   const saveUser = (user) => {
-    let userVAl = userValidation({
-      user: userName,
-      error: userError,
-      setError: handleUserError,
-    });
-    let passVal = validation.passwordValidation({
-      password,
-      error: passwordError,
-      setError: handlePasswordError,
-    });
-
-    if (userVAl.sta || passVal.sta) {
-      return;
-    } else {
-      sendUser(user);
-      setUserName("");
-      setPassword("");
-      redirect();
-    }
+    sendUser(user);
   };
   return (
     <div className="form_container">
@@ -73,7 +56,6 @@ function Form() {
             value={userName}
             onChange={(e) => {
               setUserName(e.target.value);
-              setUserError({ message: "", sta: true });
             }}
             style={{ background: userError.sta ? "#df7f7f" : null }}
           />
