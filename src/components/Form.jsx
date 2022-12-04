@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import Auth from "../images/auth.svg";
 import Completed from "../images/auth_completed.svg";
 import validation, { userValidation } from "../validations/signUp.validation";
 import { saveInLocal } from "../utils/save";
+import axios, { Axios } from "axios";
 // import { useEffect } from "react";
 function Form() {
   const [passwordType, setPasswordType] = useState(false);
@@ -18,29 +19,21 @@ function Form() {
 
   const userInfo = { username: userName, password: password };
   console.log(userInfo);
-  // const redirect = () => {
-  //   validation.inLocal() ? (window.location = "/") : null;
-  // };
 
-  // const handleUserError = (obj) => {
-  //   return setUserError(obj);
-  // };
-
-  // const handlePasswordError = (obj) => {
-  //   return setPasswordError(obj);
-  // };
-
-  const sendUser = async (user) => {
+  async function sendUser(user) {
     try {
-      const req = await axios.post("/api/signup", user);
+      const req = await axios("/api/signup", {
+        method: "post",
+        data: user,
+      });
       const res = await req.data;
-      if (res.message) console.log(res);
-      return res;
+      console.log(res);
     } catch (e) {
-      setUserError({ message: e.message });
-      console.error(e.message);
+      const { message } = e.response.data.error || e.response.data;
+      setUserError({ message: message });
+      console.error(e);
     }
-  };
+  }
 
   const saveUser = (user) => {
     sendUser(user);
