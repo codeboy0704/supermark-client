@@ -1,24 +1,27 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import Auth from "../images/auth.svg";
 import Completed from "../images/auth_completed.svg";
-import validation, { userValidation } from "../validations/signUp.validation";
-import { saveInLocal } from "../utils/save";
-import axios, { Axios } from "axios";
-// import { useEffect } from "react";
+
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 function Form() {
+  const [img, setImg] = useState(Auth);
   const [passwordType, setPasswordType] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [userError, setUserError] = useState({ message: "", sta: false });
-  const [passwordError, setPasswordError] = useState({
+  const [err, setErr] = useState({
     message: "",
-    sta: false,
+    sta: { user: true, password: true },
   });
-
+  const navigate = useNavigate();
   const userInfo = { username: userName, password: password };
-  console.log(userInfo);
+  const redirect = () => {
+    setImg(Completed);
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
+  };
 
   async function sendUser(user) {
     try {
@@ -26,14 +29,21 @@ function Form() {
         method: "post",
         data: user,
       });
-      const res = await req.data;
-      console.log(res);
+      const data = await req.data;
+      if (req.status == 201) {
+        redirect();
+      }
     } catch (e) {
-      const { message } = e.response.data.error || e.response.data;
-      setUserError({ message: message });
+      const { message, sta } = e.response.data.error || e.response.data;
+      setErr({
+        message: message,
+        sta: !sta ? { user: false, password: true } : sta,
+      });
       console.error(e);
     }
   }
+
+  console.log(err);
 
   const saveUser = (user) => {
     sendUser(user);
@@ -50,11 +60,9 @@ function Form() {
             onChange={(e) => {
               setUserName(e.target.value);
             }}
-            style={{ background: userError.sta ? "#df7f7f" : null }}
+            style={{ background: !err.sta.user ? "#df7f7f" : null }}
           />
-          <small style={{ color: "#fff", fontSize: "15px" }}>
-            {userError.message}
-          </small>
+
           <div>
             <input
               type={passwordType ? "text" : "password"}
@@ -63,7 +71,7 @@ function Form() {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              style={{ background: passwordError.sta ? "#df7f7f" : null }}
+              style={{ background: !err.sta.password ? "#df7f7f" : null }}
             ></input>
             <i
               onClick={() => {
@@ -71,8 +79,15 @@ function Form() {
               }}
               className="bx bx-show bx-sm"
             ></i>
-            <small style={{ color: "#fff", fontSize: "15px" }}>
-              {passwordError.message}
+            <small
+              style={{
+                color: "#e7e3e3",
+                fontSize: "18px",
+                fontWeight: "bold",
+                fontStyle: "italic",
+              }}
+            >
+              {err.message}
             </small>
           </div>
           <button
@@ -87,7 +102,7 @@ function Form() {
         </div>
 
         <picture>
-          <img src={Auth} alt="sign up" />
+          <img src={img} alt="sign up" />
         </picture>
       </form>
     </div>

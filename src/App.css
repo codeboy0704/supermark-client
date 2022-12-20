@@ -59,6 +59,7 @@ button {
 .form_txt div {
   width: 60%;
   position: relative;
+  text-align: center;
 }
 
 .form_txt div input {
