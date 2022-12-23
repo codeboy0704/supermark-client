@@ -1,17 +1,39 @@
-import React from "react";
 import { useState } from "react";
-import sendUser from "../utils/sendUser";
 import LoginImg from "../images/login.svg";
-import { Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import redirect from "../utils/redirect";
 export default function Login() {
+  const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [err, setError] = useState({
+  const [err, setErr] = useState({
     message: "",
     sta: { user: true, password: true },
   });
-  const [passwordType, setPasswordType] = useState(false);
 
+  const [passwordType, setPasswordType] = useState(false);
+  const userInfo = { username, password };
+  async function searchUser(user) {
+    try {
+      const req = await axios.post("/api/login", user);
+      const res = await req.data;
+      document.cookie = `token=${res.token}; max-age=${
+        60 * 2
+      }; path=/; samesite=strict`;
+      console.log(document.cookie);
+      if (req.status == 201) {
+        redirect("/home", navigate);
+      }
+    } catch (e) {
+      const { message, sta } = e.response.data.error || e.response.data;
+      setErr({
+        message: message,
+        sta: !sta ? { user: false, password: true } : sta,
+      });
+    }
+  }
   return (
     <div className="login_container">
       <form style={{ background: "#fff" }}>
@@ -47,7 +69,7 @@ export default function Login() {
             ></i>
             <small
               style={{
-                color: "#e7e3e3",
+                color: "red",
                 fontSize: "18px",
                 fontWeight: "bold",
                 fontStyle: "italic",
@@ -60,12 +82,13 @@ export default function Login() {
             className="sign_btn"
             onClick={(e) => {
               e.preventDefault();
+              searchUser(userInfo);
             }}
           >
             Sign In
           </button>
           <p>
-            Don't have a account?
+            Don't have an account?
             <span>
               <Link to="/signup">Sign Up!</Link>
             </span>

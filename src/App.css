@@ -117,13 +117,13 @@ button {
 .login_container form button {
   padding: 1rem 1.5rem;
   border: none;
-  border-radius: 10px;
 }
 
 .form_container form button {
   background-color: #fff;
   color: #4238fd;
   margin: 10px 0;
+  border-radius: 10px;
 }
 
 .login_container form button {
@@ -131,7 +131,8 @@ button {
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
-  /* background-color: #f2f2f2; */
+  width: 70%;
+  border-radius: 18px;
 }
 
 .form_container form picture {
