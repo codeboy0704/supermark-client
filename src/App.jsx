@@ -1,16 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 
 import "./App.css";
 import Main from "./components/Main";
 import validation from "./validations/signUp.validation";
 import Form from "./components/Form";
-import Menu from "./components/Menu";
+
+import Login from "./components/Login.jsx";
 
 function App() {
   return (
     <div className="app_container">
       <BrowserRouter>
-        <Menu />
         <Routes>
           <Route
             path="/"
@@ -19,6 +20,7 @@ function App() {
             }
           />
           <Route path="/signup" element={<Form />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,9 +4,9 @@ import Completed from "../images/auth_completed.svg";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import sendUser from "../utils/sendUser";
 
 function Form() {
-  const [img, setImg] = useState(Auth);
   const [passwordType, setPasswordType] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -15,38 +15,11 @@ function Form() {
     sta: { user: true, password: true },
   });
   const navigate = useNavigate();
+
   const userInfo = { username: userName, password: password };
-  const redirect = () => {
-    setImg(Completed);
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
-  };
-
-  async function sendUser(user) {
-    try {
-      const req = await axios("/api/signup", {
-        method: "post",
-        data: user,
-      });
-      const data = await req.data;
-      if (req.status == 201) {
-        redirect();
-      }
-    } catch (e) {
-      const { message, sta } = e.response.data.error || e.response.data;
-      setErr({
-        message: message,
-        sta: !sta ? { user: false, password: true } : sta,
-      });
-      console.error(e);
-    }
-  }
-
-  console.log(err);
 
   const saveUser = (user) => {
-    sendUser(user);
+    sendUser({ user, path: "/api/signup", setErr, navigate });
   };
   return (
     <div className="form_container">
@@ -102,7 +75,7 @@ function Form() {
         </div>
 
         <picture>
-          <img src={img} alt="sign up" />
+          <img src={Auth} alt="sign up" />
         </picture>
       </form>
     </div>
