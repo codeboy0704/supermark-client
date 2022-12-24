@@ -4,6 +4,7 @@ import LoginImg from "../images/login.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import redirect from "../utils/redirect";
+import { useEffect } from "react";
 export default function Login() {
   const navigate = useNavigate();
   const [username, setUserName] = useState("");
@@ -15,15 +16,16 @@ export default function Login() {
   const [passwordType, setPasswordType] = useState(false);
   const userInfo = { username, password };
   async function searchUser(user) {
-    const timestamp = new Date().getTime();
-    const exp = timestamp + 60 * 60 * 24 * 1000 * 1;
+    const cookie = document.cookie;
+    if (cookie.length) {
+      return navigate("/");
+    }
     try {
       const req = await axios.post("/api/login", user);
       const res = await req.data;
       document.cookie = `token=${res.token}; max-age=${
         60 * 60
       }; path=/; samesite=strict`;
-      console.log(document.cookie);
       if (req.status == 201) {
         redirect("/", navigate);
       }

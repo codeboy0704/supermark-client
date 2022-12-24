@@ -202,10 +202,10 @@ button {
 .menu_cont {
   background-color: #413d96;
   width: 40%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   z-index: 100;
   opacity: 0.9;
   transition: all 2s;
@@ -215,7 +215,7 @@ button {
   /* nav */
   position: relative;
   display: flex;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -251,6 +251,110 @@ button {
   font-size: 20px;
 }
 
+/* products section  */
+.products_container {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+}
+
+.search_cont {
+  align-self: center;
+  background-color: #413d96;
+  padding: 0.7rem;
+  width: 100%;
+  text-align: center;
+}
+
+.search_cont input {
+  padding: 0.4rem 0.7rem;
+  margin: 0 0.5rem 0 2rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  width: 70%;
+}
+
+.search_cont input:focus {
+  padding: 0.4rem 0.7rem;
+}
+
+.search_cont button {
+  padding: 0.5rem 0.9rem;
+  border-radius: 15px;
+  background-color: #fffafa;
+  border: none;
+}
+
+.table {
+  background-color: rgb(223, 219, 219);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.table .last_price {
+  display: none;
+}
+
+.products,
+.stock,
+.last_price {
+  border: 1px solid;
+  text-align: center;
+}
+
+.table_title {
+  font-size: 27px;
+}
+
+.products,
+.stock,
+.last_price {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  border-bottom: 1px solid;
+  font-style: italic;
+  font-size: 25px;
+  margin: 2px 0;
+  padding: 0.2rem;
+}
+
+.stock div {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  background-color: #ccc;
+  margin: 2px 0;
+  width: 100%;
+
+  padding: 0.5rem;
+  height: 75px;
+  border-top: 2px solid;
+}
+
+.item h2 {
+  font-size: 22px;
+  margin: auto 0;
+}
+
+.item .options {
+  margin-top: 3px;
+}
+
+.item .options button {
+  margin: 0 0.2rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 15px;
+  color: #fff;
+  background-color: #5c56d1;
+  text-transform: capitalize;
+}
+
 /* Tablet design  */
 
 @media (min-width: 550px) {
@@ -272,5 +376,24 @@ button {
     grid-row: 2/4;
     width: 70%;
     padding-top: 30px;
+  }
+
+  /* product section  */
+
+  .table {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .table_title {
+    font-size: 22px;
+  }
+
+  .table .last_price {
+    display: flex;
+  }
+
+  .last_price div {
+    display: flex;
+    justify-content: center;
   }
 }

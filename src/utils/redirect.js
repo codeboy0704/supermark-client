@@ -1,7 +1,7 @@
 const redirect = (path, func) => {
   setTimeout(() => {
     func(path);
-  }, 1000);
+  }, 700);
 };
 
 export default redirect;

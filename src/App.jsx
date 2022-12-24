@@ -14,14 +14,19 @@ import validation from "./validations/signUp.validation";
 import Form from "./components/Form";
 
 import Login from "./components/Login.jsx";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 import redirect from "./utils/redirect";
+import Menu from "./components/Menu";
+import Products from "./components/Products.jsx";
+import Modal from "./components/Modal";
 
 function App() {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
+  console.log(login);
   const navigate = useNavigate();
   const token = document.cookie.replace("token=", "");
+
   const verifyAuth = async () => {
     try {
       const req = await axios("/api/home", {
@@ -48,10 +53,12 @@ function App() {
   }, []);
   return (
     <div className="app_container">
+      {login ? <Menu /> : null}
       <Routes>
-        <Route path="/" element={login ? <Main /> : <Navigate to="/login" />} />
         <Route path="/signup" element={<Form />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="*" element={<Main />} />
       </Routes>
     </div>
   );

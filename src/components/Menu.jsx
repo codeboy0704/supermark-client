@@ -10,7 +10,7 @@ function Menu() {
         <i
           className="bx bx-menu-alt-left bx-lg logo"
           style={{
-            color: menuState ? "#413d96" : "#fff",
+            color: "#fff",
             transition: "all 1.5s",
           }}
           onClick={() => {
