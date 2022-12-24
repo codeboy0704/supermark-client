@@ -12,19 +12,20 @@ export default function Login() {
     message: "",
     sta: { user: true, password: true },
   });
-
   const [passwordType, setPasswordType] = useState(false);
   const userInfo = { username, password };
   async function searchUser(user) {
+    const timestamp = new Date().getTime();
+    const exp = timestamp + 60 * 60 * 24 * 1000 * 1;
     try {
       const req = await axios.post("/api/login", user);
       const res = await req.data;
       document.cookie = `token=${res.token}; max-age=${
-        60 * 2
+        60 * 60
       }; path=/; samesite=strict`;
       console.log(document.cookie);
       if (req.status == 201) {
-        redirect("/home", navigate);
+        redirect("/", navigate);
       }
     } catch (e) {
       const { message, sta } = e.response.data.error || e.response.data;

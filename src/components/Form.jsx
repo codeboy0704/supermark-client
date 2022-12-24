@@ -3,7 +3,7 @@ import Auth from "../images/auth.svg";
 import Completed from "../images/auth_completed.svg";
 
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import sendUser from "../utils/sendUser";
 
 function Form() {
@@ -26,15 +26,17 @@ function Form() {
       <form>
         <div className="form_txt">
           <h2>Sign Up</h2>
-          <input
-            type="text"
-            placeholder="User"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-            style={{ background: !err.sta.user ? "#df7f7f" : null }}
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="User"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+              style={{ background: !err.sta.user ? "#df7f7f" : null }}
+            />
+          </div>
 
           <div>
             <input
@@ -72,6 +74,12 @@ function Form() {
           >
             Sign Up
           </button>
+          <p>
+            Don't have an account?
+            <span>
+              <Link to="/login">Sign In!</Link>
+            </span>
+          </p>
         </div>
 
         <picture>

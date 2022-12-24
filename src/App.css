@@ -15,19 +15,24 @@ button {
   width: 100%;
   margin: 0;
   height: 100vh;
-  padding: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.form_container {
+  background-color: #9898fd;
+  padding-top: 20px;
 }
 
 .form_container form {
   display: flex;
   flex-flow: column wrap;
-  background-color: #6c63ff;
-  padding: 20px 15px;
-  margin: 0;
+  background-color: #5c56d1;
+  width: 90%;
+  margin: auto;
   align-items: center;
-  border-radius: 10px;
-  height: 100%;
-  justify-content: center;
+  border-radius: 25px;
+  height: 95%;
 }
 
 .login_container form {
@@ -48,7 +53,8 @@ button {
   justify-content: center;
   width: 100%;
   height: 60%;
-  margin: 5x 10px 25px 1px;
+  margin: 5px 10px 25px 1px;
+
   /* padding: 20px; */
 }
 
@@ -56,7 +62,7 @@ button {
   color: #fff;
   font-family: "Courier New", Courier, monospace;
   font-size: 30px;
-  margin-top: 5px;
+  margin: 5px 0 10px 0;
 }
 
 .form_container form input,
@@ -122,8 +128,14 @@ button {
 .form_container form button {
   background-color: #fff;
   color: #4238fd;
-  margin: 10px 0;
+  margin: 10px 0 15px 0;
   border-radius: 10px;
+  width: 70%;
+  font-size: 0.9rem;
+}
+
+.form_container form button:hover {
+  background-color: #f0f0f8;
 }
 
 .login_container form button {
@@ -165,6 +177,12 @@ button {
 .form_container a {
   text-decoration: none;
   font-style: italic;
+}
+
+.form_container p,
+.form_container a {
+  color: #fff;
+  font-size: 1.1rem;
 }
 
 /* Menu */
