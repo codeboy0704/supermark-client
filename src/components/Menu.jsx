@@ -33,7 +33,7 @@ function Menu() {
               <Link to="/products">Products</Link>
             </li>
             <li>
-              <Link>Balance</Link>
+              <Link>Budget</Link>
             </li>
             <li>
               <Link>{"Sign out"}</Link>

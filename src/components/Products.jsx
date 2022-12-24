@@ -8,13 +8,13 @@ function Products() {
     { name: "Milk", onStock: 3, lastPrice: 1.99 },
     { name: "Orange", onStock: 10, lastPrice: 1 },
     { name: "Cheese", onStock: 3, lastPrice: 1.99 },
+    { name: "Cheese", onStock: `${1}L`, lastPrice: 1.99 },
     { name: "Cheese", onStock: 3, lastPrice: 1.99 },
     { name: "Cheese", onStock: 3, lastPrice: 1.99 },
+    { name: "Sugar", onStock: 3, lastPrice: 1.45 },
     { name: "Cheese", onStock: 3, lastPrice: 1.99 },
     { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-    { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-    { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-  ];
+  ].sort((a, b) => a.lastPrice - b.lastPrice);
 
   const findProduct = (arr, product) => {
     const found = arr.filter((el) =>
@@ -28,9 +28,9 @@ function Products() {
     setSearchResults(found);
   };
   function Table({ products }) {
-    const names = products.map((el) => {
+    const names = products.map((el, index) => {
       return (
-        <div className="item">
+        <div className="item" key={index}>
           <h2>{el.name}</h2>
           <div className="options">
             <button>Details</button>
@@ -39,16 +39,16 @@ function Products() {
         </div>
       );
     });
-    const onStock = products.map((el) => {
+    const onStock = products.map((el, index) => {
       return (
-        <div className="item">
+        <div className="item" key={index}>
           <h2>{el.onStock}</h2>
         </div>
       );
     });
-    const lastPrice = products.map((el) => {
+    const lastPrice = products.map((el, index) => {
       return (
-        <div className="item">
+        <div className="item" key={index}>
           <h2>${el.lastPrice}</h2>
         </div>
       );
