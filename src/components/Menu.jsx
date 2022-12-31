@@ -1,16 +1,23 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import redirect from "../utils/redirect";
+import UserContext from "../context/UserContext";
+import Manimg from "../images/avatars/man_1.svg";
 
 function Menu() {
+  const navigate = useNavigate();
   const [menuState, setMenuState] = useState(true);
-
+  const userInfo = useContext(UserContext);
+  console.log(userInfo);
   return (
     <>
       <div className="logo_container">
         <i
           className="bx bx-menu-alt-left bx-lg logo"
           style={{
-            color: "#fff",
+            color: menuState ? "#fff" : "#fff",
             transition: "all 1.5s",
           }}
           onClick={() => {
@@ -24,6 +31,19 @@ function Menu() {
           transform: menuState ? "translate(-100%)" : "translate(0%)",
         }}
       >
+        <div className="user_info">
+          <picture>
+            <img
+              src={Manimg}
+              alt=""
+              onClick={(e) => {
+                redirect(`/user:${userInfo.data._id}`, navigate);
+              }}
+            />
+          </picture>
+          <h3>{userInfo.data.name}</h3>
+          <h3>{userInfo.data._id}</h3>
+        </div>
         <nav className="menu">
           <ul>
             <li>
@@ -33,7 +53,7 @@ function Menu() {
               <Link to="/products">Products</Link>
             </li>
             <li>
-              <Link>Budget</Link>
+              <Link to="/budget">Budget</Link>
             </li>
             <li>
               <Link>{"Sign out"}</Link>

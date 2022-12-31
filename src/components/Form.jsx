@@ -10,9 +10,10 @@ function Form() {
   const [passwordType, setPasswordType] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [familyID, setFamilyID] = useState("");
   const [err, setErr] = useState({
     message: "",
-    sta: { user: true, password: true },
+    sta: { user: true, password: true, family: true },
   });
   const navigate = useNavigate();
 
@@ -48,6 +49,7 @@ function Form() {
               }}
               style={{ background: !err.sta.password ? "#df7f7f" : null }}
             ></input>
+
             <i
               onClick={() => {
                 setPasswordType((sta) => !sta);

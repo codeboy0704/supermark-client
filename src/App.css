@@ -188,7 +188,7 @@ button {
 /* Menu */
 
 .logo_container {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 200;
@@ -207,8 +207,32 @@ button {
   left: 0;
   height: 100%;
   z-index: 100;
-  opacity: 0.9;
   transition: all 2s;
+  text-align: center;
+}
+
+.user_info {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5%;
+  text-align: center;
+  align-content: center;
+  opacity: 1;
+  margin-top: 2rem;
+  color: #fffafa;
+  height: 30%;
+  width: 100%;
+}
+
+.user_info h3 {
+  font-style: italic;
+  font-size: 15px;
+}
+
+.user_info picture img {
+  object-fit: cover;
+  width: 50%;
+  border-radius: 25px;
 }
 
 .menu {
@@ -220,6 +244,7 @@ button {
   padding: 0;
   margin: 0;
   justify-content: left;
+  opacity: 0.9;
 }
 
 .menu ul {
@@ -228,9 +253,10 @@ button {
   align-items: center;
   justify-content: center;
   margin: 0;
-  gap: 7%;
+  gap: 9.5%;
   width: 100%;
   padding: 0;
+  height: 55%;
 }
 
 .menu ul li {
@@ -358,6 +384,14 @@ button {
 /* Tablet design  */
 
 @media (min-width: 550px) {
+  .user_info {
+    height: 40%;
+  }
+
+  .menu ul {
+    height: 50%;
+  }
+
   .form_txt {
     grid-column: 1/2;
     grid-row: 1/5;
