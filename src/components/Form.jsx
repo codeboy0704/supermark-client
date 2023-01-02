@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Auth from "../images/auth.svg";
 import Completed from "../images/auth_completed.svg";
 
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import sendUser from "../utils/sendUser";
+import { UserContext } from "../context/UserContext";
 
 function Form() {
   const [passwordType, setPasswordType] = useState(false);
@@ -15,8 +16,9 @@ function Form() {
     message: "",
     sta: { user: true, password: true, family: true },
   });
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  const { data } = useContext(UserContext);
   const userInfo = { username: userName, password: password };
 
   const saveUser = (user) => {

@@ -5,12 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import redirect from "../utils/redirect";
 import UserContext from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
+import { useEffect } from "react";
 
-function Menu() {
+function Menu({ userInfo }) {
   const navigate = useNavigate();
   const [menuState, setMenuState] = useState(true);
-  const userInfo = useContext(UserContext);
-  console.log(userInfo);
   return (
     <>
       <div className="logo_container">
@@ -36,13 +35,14 @@ function Menu() {
             <img
               src={Manimg}
               alt=""
+              style={{ cursor: "pointer" }}
               onClick={(e) => {
                 redirect(`/user:${userInfo.data._id}`, navigate);
               }}
             />
           </picture>
-          <h3>{userInfo.data.name}</h3>
-          <h3>{userInfo.data._id}</h3>
+          <h3>{userInfo ? userInfo.data.name : "Default One"}</h3>
+          <h3>{userInfo ? userInfo.data._id : "8DDF4545343G"}</h3>
         </div>
         <nav className="menu">
           <ul>

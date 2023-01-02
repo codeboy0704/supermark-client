@@ -18,7 +18,7 @@ export default function Login() {
   async function searchUser(user) {
     const cookie = document.cookie;
     if (cookie.length) {
-      return navigate("/");
+      return (window.document.location = "/");
     }
     try {
       const req = await axios.post("/api/login", user);
