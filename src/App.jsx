@@ -20,11 +20,25 @@ function App() {
   const navigate = useNavigate();
   const [login, setLogin] = useState(false);
   const context = useContext(UserContext);
+  // const getFamilyDetails = async () => {
+  //   try {
+  //     const req = await axios.post(`/api/family`, {
+  //       user: context.name,
+  //       id: context.family,
+  //     });
+  //     const res = res.data;
+  //     console.log(res);
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
+
   useEffect(() => {
     if (document.cookie.length) {
       console.log("Ahi ta");
       setLogin(true);
     }
+    // getFamilyDetails();
   }, []);
 
   return (
@@ -36,7 +50,7 @@ function App() {
         <Route path="/signup" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/user:id" element={<Personal />} />
+        <Route path="/user:id" element={<Personal data={context} />} />
       </Routes>
     </div>
   );

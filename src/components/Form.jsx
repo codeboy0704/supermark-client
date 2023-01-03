@@ -18,7 +18,7 @@ function Form() {
   });
 
   const navigate = useNavigate();
-  const { data } = useContext(UserContext);
+
   const userInfo = { username: userName, password: password };
 
   const saveUser = (user) => {
