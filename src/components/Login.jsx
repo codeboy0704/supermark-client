@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import redirect from "../utils/redirect";
 import { useEffect } from "react";
-export default function Login() {
+export default function Login({ setLogin }) {
   const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,8 @@ export default function Login() {
         60 * 60
       }; path=/; samesite=strict`;
       if (req.status == 201) {
-        redirect("/", navigate);
+        setLogin(true);
+        window.location.href = "/";
       }
     } catch (e) {
       const { message, sta } = e.response.data.error || e.response.data;

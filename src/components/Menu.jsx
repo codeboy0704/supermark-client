@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import redirect from "../utils/redirect";
-import UserContext from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
 import { useEffect } from "react";
 
-function Menu({ userInfo }) {
+function Menu() {
+  const userData = useContext(UserContext);
   const navigate = useNavigate();
   const [menuState, setMenuState] = useState(true);
   return (
@@ -37,14 +38,19 @@ function Menu({ userInfo }) {
               alt=""
               style={{ cursor: "pointer" }}
               onClick={(e) => {
-                redirect(`/user:${userInfo.data._id}`, navigate);
+                redirect(`/user:${userData.data._id}`, navigate);
               }}
             />
           </picture>
-          <h3>{userInfo ? userInfo.data.name : "Default One"}</h3>
-          <h3>{userInfo ? userInfo.data._id : "8DDF4545343G"}</h3>
+          <h3>{userData ? userData.data.name : "Default One"}</h3>
+          <h3>{userData ? userData.data._id : "8DDF4545343G"}</h3>
         </div>
-        <nav className="menu">
+        <nav
+          className="menu"
+          onClick={() => {
+            setMenuState((sta) => !sta);
+          }}
+        >
           <ul>
             <li>
               <Link to="/">Home</Link>

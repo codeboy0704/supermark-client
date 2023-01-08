@@ -1,31 +1,35 @@
 import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import UserContext from "../context/UserContext";
+
+import { UserContext } from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
 function Personal({ data }) {
-  const info = useContext(UserContext);
-  console.log(info);
+  const [familyDetails, setFamilyDetails] = useState(null);
+  const userInfo = useContext(UserContext);
+  console.log(userInfo);
   const getFamilyDetails = async () => {
+    if (!userInfo.data) {
+      return;
+    }
     try {
-      const req = await axios.get(`/api/family`, {
-        user: data.data.name,
-        id: data.data.family,
+      const req = await axios.get("/api/family", {
+        user: userInfo.data,
+        id: userInfo.data.family,
       });
-      console.log(req);
-      const res = await res.data;
-      console.log(res);
+      if (req.status == 201) {
+        setFamilyDetails(req.data);
+      }
+      console.log(familyDetails);
     } catch (e) {
       console.error(e);
     }
   };
-
   useEffect(() => {
-    if (data) {
-      getFamilyDetails();
-    }
-  }, [data]);
+    // getFamilyDetails();
+  }, []);
   return (
     <div className="personal_container">
       {data ? (

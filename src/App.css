@@ -262,7 +262,7 @@ button {
 .menu ul li {
   margin: 0.2rem 0.5rem;
   list-style: none;
-  padding: 0.4rem;
+  padding: 0.3rem;
   border-radius: 10px;
 }
 
@@ -419,6 +419,65 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Modal  */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #6c63ff;
+  z-index: 1000;
+  width: 90%;
+  height: max-content;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0.8rem;
+}
+
+.modal h2 {
+  margin: 0.4rem 0;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+.modal_details {
+  display: flex;
+  gap: 3%;
+  padding: 0.2rem;
+}
+
+.modal_details input {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+}
+
+.modal_details input:focus {
+  background-color: #f0f0f8;
+}
+
+.modal_details button {
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  outline: none;
+  border: none;
 }
 
 /* Tablet design  */

@@ -8,8 +8,6 @@ import UserProvider from "./context/UserContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <UserProvider></UserProvider>
   </BrowserRouter>
 );
