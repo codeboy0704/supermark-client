@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import redirect from "../utils/redirect";
 import { useEffect } from "react";
-export default function Login({ setLogin }) {
+function Login() {
   const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +19,7 @@ export default function Login({ setLogin }) {
     const cookie = document.cookie;
     if (cookie.length) {
       redirect("/", navigate);
+      console.log("Heyyy");
     }
     try {
       const req = await axios.post("/api/login", user);
@@ -27,11 +28,12 @@ export default function Login({ setLogin }) {
         60 * 60
       }; path=/; samesite=strict`;
       if (req.status == 201) {
-        setLogin(true);
         window.location.href = "/";
       }
     } catch (e) {
+      console.log(e);
       const { message, sta } = e.response.data.error || e.response.data;
+
       setErr({
         message: message,
         sta: !sta ? { user: false, password: true } : sta,
@@ -40,7 +42,13 @@ export default function Login({ setLogin }) {
   }
   return (
     <div className="login_container">
-      <form style={{ background: "#fff" }}>
+      <form
+        style={{ background: "#fff" }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          searchUser(userInfo);
+        }}
+      >
         <div className="login_txt">
           {/* <h2>Sign In</h2> */}
           <picture>
@@ -82,15 +90,7 @@ export default function Login({ setLogin }) {
               {err.message}
             </small>
           </div>
-          <button
-            className="sign_btn"
-            onClick={(e) => {
-              e.preventDefault();
-              searchUser(userInfo);
-            }}
-          >
-            Sign In
-          </button>
+          <button className="sign_btn">Sign In</button>
           <p>
             Don't have an account?
             <span>
@@ -102,3 +102,5 @@ export default function Login({ setLogin }) {
     </div>
   );
 }
+
+export default Login;
