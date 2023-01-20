@@ -200,8 +200,13 @@ button {
 }
 
 .menu_cont {
+  display: flex;
+  flex-flow: column wrap;
+  justify-items: center;
+  justify-content: center;
+  gap: 3%;
   background-color: #413d96;
-  width: 40%;
+  width: 35%;
   position: fixed;
   top: 0;
   left: 0;
@@ -214,13 +219,14 @@ button {
 .user_info {
   display: flex;
   flex-flow: column wrap;
-  gap: 5%;
   text-align: center;
+  gap: 5%;
+  justify-content: center;
   align-content: center;
   opacity: 1;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   color: #fffafa;
-  height: 30%;
+  height: 45%;
   width: 100%;
 }
 
@@ -231,20 +237,24 @@ button {
 
 .user_info picture img {
   object-fit: cover;
-  width: 50%;
+  width: 55%;
   border-radius: 25px;
 }
 
 .menu {
   /* nav */
-  position: relative;
+  /* position: relative; */
   display: flex;
-  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 45%;
   width: 100%;
   padding: 0;
   margin: 0;
   justify-content: left;
   opacity: 0.9;
+  z-index: 100;
 }
 
 .menu ul {
@@ -253,7 +263,7 @@ button {
   align-items: center;
   justify-content: center;
   margin: 0;
-  gap: 9.5%;
+  gap: 15%;
   width: 100%;
   padding: 0;
   height: 55%;

@@ -4,33 +4,25 @@ import { useNavigate } from "react-router-dom";
 import App from "../App";
 import Menu from "../components/Menu";
 import redirect from "../utils/redirect";
+import MenuContext from "./MenuContext";
 export const UserContext = createContext({
   data: {},
   avatar: {},
 });
 
-function UserProvider({ children }) {
+function UserProvider() {
   const navigate = useNavigate();
   const [login, setLogin] = useState(false);
-  const [data, setData] = useState({ data: {}, avatar: {}, login: false });
-  const [familyInfo, setFamilyInfo] = useState(null);
+  const [menuOptions, setmenuOptions] = useState({
+    color: "#fff",
+    background: null,
+  });
+  const [userInfo, setUserInfo] = useState({
+    data: { user: {}, family: {} },
+    avatar: {},
+    login: false,
+  });
   const token = document.cookie.replace("token=", "");
-  console.log(login);
-
-  const getFamilyInfo = async (userData) => {
-    try {
-      const req = await axios.get("/api/family", {
-        user: userData,
-      });
-      const res = await req.data;
-      if (req.status == 201) {
-        setFamilyInfo(res);
-      }
-      return res;
-    } catch (e) {
-      console.error(e);
-    }
-  };
 
   const verifyAuthAndGetInfo = async () => {
     try {
@@ -43,7 +35,7 @@ function UserProvider({ children }) {
       if (req.status === 201) {
         const res = await req.data;
         setLogin(true);
-        setData({ data: res.data, avatar: {}, login: login });
+        setUserInfo({ data: res.data, avatar: {} });
         return true;
       } else {
         redirect("/login", navigate);
@@ -58,14 +50,12 @@ function UserProvider({ children }) {
     verifyAuthAndGetInfo();
   }, []);
 
-  useEffect(() => {
-    console.log("Hola");
-  }, [token]);
-
   return (
-    <UserContext.Provider value={data}>
-      {login ? <Menu /> : null}
-      <App />
+    <UserContext.Provider value={userInfo}>
+      <MenuContext.Provider value={menuOptions}>
+        {login ? <Menu /> : null}
+        {userInfo.data ? <App /> : null}
+      </MenuContext.Provider>
     </UserContext.Provider>
   );
 }

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import redirect from "../utils/redirect";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../context/UserContext.jsx";
 import Manimg from "../images/avatars/man_1.svg";
 import { useEffect } from "react";
 
@@ -38,12 +38,12 @@ function Menu() {
               alt=""
               style={{ cursor: "pointer" }}
               onClick={(e) => {
-                redirect(`/user:${userData.data._id}`, navigate);
+                redirect(`/user:${userData.data.user._id}`, navigate);
               }}
             />
           </picture>
-          <h3>{userData ? userData.data.name : "Default One"}</h3>
-          <h3>{userData ? userData.data._id : "8DDF4545343G"}</h3>
+          <h3>{userData ? userData.data.user.name : "Default One"}</h3>
+          <h3>{userData ? userData.data.user._id : "8DDF4545343G"}</h3>
         </div>
         <nav
           className="menu"
