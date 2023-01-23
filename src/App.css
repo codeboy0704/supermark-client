@@ -195,10 +195,6 @@ button {
   padding: 0;
 }
 
-.logo {
-  color: white;
-}
-
 .menu_cont {
   display: flex;
   flex-flow: column wrap;

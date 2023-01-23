@@ -1,10 +1,6 @@
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+// import { useState, useEffect, useContext } from "react";
 
-import { UserContext } from "../context/UserContext";
+// import { UserContext } from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
 function Personal({ data }) {
   console.log(data);

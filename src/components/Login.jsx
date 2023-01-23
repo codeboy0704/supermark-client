@@ -16,11 +16,12 @@ function Login() {
   const [passwordType, setPasswordType] = useState(false);
   const userInfo = { username, password };
   async function searchUser(user) {
+    console.log(userInfo);
     const cookie = document.cookie;
-    if (cookie.length) {
-      redirect("/", navigate);
-      console.log("Heyyy");
-    }
+    // if (cookie.length) {
+    //   redirect("/", navigate);
+    //   console.log("Heyyy");
+    // }
     try {
       const req = await axios.post("/api/login", user);
       const res = await req.data;

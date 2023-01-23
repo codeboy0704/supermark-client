@@ -6,18 +6,21 @@ import redirect from "../utils/redirect";
 import { UserContext } from "../context/UserContext.jsx";
 import Manimg from "../images/avatars/man_1.svg";
 import { useEffect } from "react";
+import HandleMenuState from "../hooks/useHandleMenu.jsx";
+import MenuContext from "../context/MenuContext";
 
 function Menu() {
   const userData = useContext(UserContext);
   const navigate = useNavigate();
-  const [menuState, setMenuState] = useState(true);
+  const { menuOptions, menuState, setMenuState } = HandleMenuState();
+
   return (
     <>
-      <div className="logo_container">
+      <div className="logo_container" style={{}}>
         <i
           className="bx bx-menu-alt-left bx-lg logo"
           style={{
-            color: menuState ? "#fff" : "#fff",
+            color: menuOptions.color,
             transition: "all 1.5s",
           }}
           onClick={() => {
@@ -28,11 +31,16 @@ function Menu() {
       <div
         className="menu_cont"
         style={{
-          transform: menuState ? "translate(-100%)" : "translate(0%)",
+          transform: menuState ? "translate(0%)" : "translate(-100%)",
+          visibility: menuOptions.visibility,
         }}
       >
         <div className="user_info">
-          <picture>
+          <picture
+            onClick={() => {
+              setMenuState((sta) => !sta);
+            }}
+          >
             <img
               src={Manimg}
               alt=""
@@ -61,7 +69,7 @@ function Menu() {
             <li>
               <Link to="/budget">Budget</Link>
             </li>
-            <li>
+            <li onClick={() => {}}>
               <Link>{"Sign out"}</Link>
             </li>
           </ul>
