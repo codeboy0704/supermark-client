@@ -8,7 +8,7 @@ const useFetchData = (token) => {
   const navigate = useNavigate();
   const [login, setLogin] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    data: { user: {}, family: {} },
+    data: { user: { families: [] }, family: {} },
     login: false,
   });
 
