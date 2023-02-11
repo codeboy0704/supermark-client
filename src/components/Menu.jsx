@@ -8,6 +8,7 @@ import Manimg from "../images/avatars/man_1.svg";
 import { useEffect } from "react";
 import HandleMenuState from "../hooks/useHandleMenu.jsx";
 import MenuContext from "../context/MenuContext";
+import logOut from "../utils/logOut";
 
 function Menu() {
   const userData = useContext(UserContext);
@@ -69,7 +70,11 @@ function Menu() {
             <li>
               <Link to="/budget">Budget</Link>
             </li>
-            <li onClick={() => {}}>
+            <li
+              onClick={() => {
+                logOut();
+              }}
+            >
               <Link>{"Sign out"}</Link>
             </li>
           </ul>

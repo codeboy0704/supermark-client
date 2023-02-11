@@ -38,6 +38,11 @@ export const passwordValidation = ({ password, error, setError }) => {
   return error;
 };
 
+export function emailValidation(email) {
+  const regularExpression = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return regularExpression.test(email);
+}
+
 const validation = {
   userValidation,
   inLocal,

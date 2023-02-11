@@ -15,7 +15,7 @@ export default async function sendUser({ user, path, setErr, navigate }) {
     const { message, sta } = e.response.data.error || e.response.data;
     setErr({
       message: message,
-      sta: !sta ? { user: false, password: true } : sta,
+      sta: !sta ? { user: false, password: true, email: true } : sta,
     });
     console.error(e);
   }

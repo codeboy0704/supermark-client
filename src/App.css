@@ -552,20 +552,20 @@ button {
 
   .form_txt {
     grid-column: 1/2;
-    grid-row: 1/5;
-    gap: 3%;
+    grid-row: 1/9;
+    gap: 1.2%;
   }
 
   .form_container form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 140px);
+    grid-template-rows: repeat(9, 80px);
     padding: 0;
   }
 
   .form_container form picture {
     grid-column: 2/4;
-    grid-row: 2/4;
+    grid-row: span 8;
     width: 70%;
     padding-top: 30px;
   }
