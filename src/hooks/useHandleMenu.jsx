@@ -10,7 +10,7 @@ function HandleMenuState() {
   useEffect(() => {
     if (menuState) {
       setMenuOptions({
-        color: "#fff",
+        color: "#423e96",
         visibility: "visible",
       });
     } else {

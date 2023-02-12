@@ -3,11 +3,10 @@
 // import { UserContext } from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
 import Add from "../images/add.svg";
+import Search from "../images/search.svg";
 function Personal({ data }) {
   const { _id, name, email, families } = data.user;
-  const deleteFamily = () => {
-    console.log("Delete Family btn");
-  };
+
   console.log(families.length);
   return (
     <div className="personal_container">
@@ -35,12 +34,22 @@ function Personal({ data }) {
             </div>
           ) : (
             <div className="new_family_container">
-              <button onClick={(e) => console.log("create family")}>
-                <picture>
-                  <img src={Add} />
-                </picture>
-              </button>
-              <h4>Create family</h4>
+              <div>
+                <button onClick={() => console.log("create family")}>
+                  <picture>
+                    <img src={Add} />
+                  </picture>
+                  <h4>Create family</h4>
+                </button>
+              </div>
+              <div>
+                <button>
+                  <picture>
+                    <img src={Search} style={{ color: "fff" }} />
+                  </picture>
+                  <h4>Search family</h4>
+                </button>
+              </div>
             </div>
           )}
         </>

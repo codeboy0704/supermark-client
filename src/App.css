@@ -197,91 +197,72 @@ button {
 
 .menu_cont {
   display: flex;
+  visibility: hidden;
   flex-flow: column wrap;
   justify-items: center;
   justify-content: center;
   gap: 3%;
-  background-color: #413d96;
-  width: 35%;
+  background-color: #fdf5f5;
+  width: 30%;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   z-index: 100;
-  transition: all 2s;
+  transition: all 1.5s;
   text-align: center;
-}
-
-.user_info {
-  display: flex;
-  flex-flow: column wrap;
-  text-align: center;
-  gap: 5%;
-  justify-content: center;
-  align-content: center;
-  opacity: 1;
-  margin-top: 1.5rem;
-  color: #fffafa;
-  height: 45%;
-  width: 100%;
-}
-
-.user_info h3 {
-  font-style: italic;
-  font-size: 15px;
-}
-
-.user_info picture img {
-  object-fit: cover;
-  width: 55%;
-  border-radius: 25px;
 }
 
 .menu {
-  /* nav */
-  /* position: relative; */
   display: flex;
   justify-content: center;
-  align-items: center;
-  align-content: center;
-  height: 45%;
   width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
-  justify-content: left;
-  opacity: 0.9;
+  padding-top: 1rem;
   z-index: 100;
 }
-
 .menu ul {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: column nowrap;
   justify-content: center;
-  margin: 0;
-  gap: 15%;
-  width: 100%;
+  align-items: center;
+  gap: 1.3rem;
+  list-style: none;
   padding: 0;
-  height: 55%;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto 0;
+}
+
+.menu .user_icon img {
+  border-radius: 35%;
+  width: 50px;
 }
 
 .menu ul li {
-  margin: 0.2rem 0.5rem;
-  list-style: none;
-  padding: 0.3rem;
-  border-radius: 10px;
+  width: 100%;
+  height: 12%;
+  padding: 10px;
 }
 
-.menu ul li:hover {
-  background: #5c56d1;
+.menu ul li picture {
+  margin: auto 0;
+  height: 100%;
 }
 
-.menu ul li a {
-  color: white;
-  text-decoration: none;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 20px;
+.menu ul li img {
+  width: 38px;
+  color: #413d96;
 }
+
+.menu img:hover {
+  transform: scale(1.1);
+}
+
+*/
 
 /* products section  */
 .products_container {
@@ -465,13 +446,12 @@ button {
 }
 
 .family_options button {
-  padding: 0.5rem;
+  padding: 0.4rem;
   margin: 0.2rem;
   align-self: flex-start;
   border-radius: 0.5rem;
   outline: none;
   border: none;
-
   color: #ffff;
   font-weight: 600;
   font-size: 1rem;
@@ -480,20 +460,27 @@ button {
 
 .new_family_container {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 30%;
+  max-height: max-content;
+  min-height: 30%;
 }
 
-.new_family_container h4 {
+.new_family_container div h4 {
   color: #413d96;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-transform: capitalize;
+  margin-top: 0.5rem;
 }
 
-.new_family_container button {
+.new_family_container div {
+  width: 40%;
+  text-align: center;
+}
+
+.new_family_container div button {
   border: none;
   border-radius: 25%;
   width: 70%;
@@ -508,8 +495,8 @@ button {
   cursor: pointer;
 }
 
-.new_family_container picture img {
-  width: 110px;
+.new_family_container div picture img {
+  width: 80%;
   object-fit: cover;
   color: #fff;
 }
@@ -629,10 +616,11 @@ button {
 @media (min-width: 800px) {
   /*Menu section*/
   .logo_container {
-    /* display: none; */
+    display: none;
   }
 
   .menu_cont {
+    background-color: #fff;
   }
 
   /*Personal Section*/
