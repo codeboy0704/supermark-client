@@ -4,6 +4,7 @@
 import Manimg from "../images/avatars/man_1.svg";
 import Add from "../images/add.svg";
 import Search from "../images/search.svg";
+import axios from "axios";
 function Personal({ data }) {
   const { _id, name, email, families } = data.user;
 

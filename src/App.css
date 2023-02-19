@@ -185,85 +185,6 @@ button {
   font-size: 1.1rem;
 }
 
-/* Menu */
-
-.logo_container {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 200;
-  padding: 0;
-}
-
-.menu_cont {
-  display: flex;
-  visibility: hidden;
-  flex-flow: column wrap;
-  justify-items: center;
-  justify-content: center;
-  gap: 3%;
-  background-color: #fdf5f5;
-  width: 30%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  z-index: 100;
-  transition: all 1.5s;
-  text-align: center;
-}
-
-.menu {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  padding-top: 1rem;
-  z-index: 100;
-}
-.menu ul {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1.3rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  margin: auto 0;
-}
-
-.menu .user_icon img {
-  border-radius: 35%;
-  width: 50px;
-}
-
-.menu ul li {
-  width: 100%;
-  height: 12%;
-  padding: 10px;
-}
-
-.menu ul li picture {
-  margin: auto 0;
-  height: 100%;
-}
-
-.menu ul li img {
-  width: 38px;
-  color: #413d96;
-}
-
-.menu img:hover {
-  transform: scale(1.1);
-}
-
-*/
-
 /* products section  */
 .products_container {
   display: flex;
@@ -567,10 +488,6 @@ button {
     height: 40%;
   }
 
-  .menu ul {
-    height: 50%;
-  }
-
   .form_txt {
     grid-column: 1/2;
     grid-row: 1/9;
@@ -614,17 +531,12 @@ button {
 }
 
 @media (min-width: 800px) {
-  /*Menu section*/
-  .logo_container {
-    display: none;
-  }
-
-  .menu_cont {
-    background-color: #fff;
-  }
-
   /*Personal Section*/
+  .app_container {
+    margin-left: 7%;
+  }
   .personal_container {
+    width: 90;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;

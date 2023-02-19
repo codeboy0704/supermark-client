@@ -1,6 +1,6 @@
 import React from "react";
 import validation from "../validations/signUp.validation";
-import Menu from "./Menu";
+
 function Main() {
   return (
     <h2>Hola</h2>

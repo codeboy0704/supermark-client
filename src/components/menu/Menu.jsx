@@ -1,19 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { useContext } from "react";
+import "./menu.css";
+import React, { useStat, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import redirect from "../utils/redirect";
-import { UserContext } from "../context/UserContext.jsx";
-import Manimg from "../images/avatars/man_1.svg";
-import { useEffect } from "react";
-import HandleMenuState from "../hooks/useHandleMenu.jsx";
-import MenuContext from "../context/MenuContext";
-import logOut from "../utils/logOut";
-import logOutIMG from "../images/logout.svg";
-import HomeIMG from "../images/home.svg";
-import Budget from "../images/icons8-money-box.svg";
-import Profile from "../images/profile.svg";
-import ProductIcon from "../images/icons8-box.svg";
+import { UserContext } from "../../context/UserContext.jsx";
+import Manimg from "../../images/avatars/man_1.svg";
+import HandleMenuState from "../../hooks/useHandleMenu.jsx";
+import MenuContext from "../../context/MenuContext";
+import logOut from "../../utils/logOut";
+import logOutIMG from "../../images/logout.svg";
+import HomeIMG from "../../images/home.svg";
+import Budget from "../../images/icons8-money-box.svg";
+import Profile from "../../images/profile.svg";
+import ProductIcon from "../../images/icons8-box.svg";
 
 function Menu() {
   const userData = useContext(UserContext);
@@ -34,13 +32,7 @@ function Menu() {
           }}
         ></i>
       </div>
-      <div
-        className="menu_cont"
-        style={{
-          transform: menuState ? "translate(0)" : "translate(-100%)",
-          visibility: menuState ? "visible" : "hidden",
-        }}
-      >
+      <div className={menuState ? "menu_cont expanded" : "menu_cont"}>
         <nav
           className="menu"
           onClick={() => {
@@ -48,7 +40,7 @@ function Menu() {
           }}
         >
           <ul>
-            <li>
+            <li className="user">
               <picture className="user_icon">
                 <Link to={`/user:${userData.data.user._id}`}>
                   <img src={Manimg} alt="" style={{ cursor: "pointer" }} />
