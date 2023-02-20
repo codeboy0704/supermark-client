@@ -11,7 +11,6 @@ export const UserContext = createContext({
 function UserProvider() {
   const token = document.cookie.replace("token=", "");
   const { login, userInfo } = useFetchData(token);
-  console.log(login);
 
   return (
     <UserContext.Provider value={userInfo}>

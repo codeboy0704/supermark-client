@@ -1,6 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import React from "react";
+import Select from "react-select";
 import Modal from "./Modal";
+import Add from "../images/add-new.svg";
+import Search from "../images/search_item.svg";
 
 function ProductModal({ setModalState, saveProduct }) {
   const [productName, setProductName] = useState("");
@@ -51,111 +55,117 @@ function ProductModal({ setModalState, saveProduct }) {
   );
 }
 
+function getProducts({ options }) {
+  const products = [
+    { name: "Milk", stock: { state: false, quantity: 0 }, lastPrice: 1.99 },
+    { name: "Orange", stock: { state: true, quantity: 10 }, lastPrice: 1 },
+    { name: "Cheese", stock: { state: true, quantity: 5 }, lastPrice: 1.99 },
+    { name: "Cheese", stock: { state: false, quantity: 0 }, lastPrice: 1.99 },
+    { name: "Cheese", stock: { state: false, quantity: 0 }, lastPrice: 1.99 },
+    { name: "Cheese", stock: { state: true, quantity: 2 }, lastPrice: 1.99 },
+    { name: "Sugar", stock: { state: true, quantity: 5 }, lastPrice: 1.45 },
+    { name: "Cheese", stock: { state: true, quantity: 2 }, lastPrice: 1.99 },
+    { name: "Cheese", stock: { state: true, quantity: 4 }, lastPrice: 1.99 },
+  ].sort((a, b) => a.lastPrice - b.lastPrice);
+  if (options.all) {
+    return products;
+  }
+  if (options.stock) {
+    return products.filter((product) => {
+      return product.stock.state === true;
+    });
+  }
+  if (!options.stock) {
+    return products.filter((product) => {
+      return product.stock.state === false;
+    });
+  }
+}
+
 function Products() {
   const [product, setProduct] = useState("");
+  const [products, setProducts] = useState([]);
   const [modalState, setModalState] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  // const saveProduct = async ({productInfo}) => {
-  //   try {
-
-  //   } catch (e) {
-  //     console.error(e)
-  //    }
-  // };
-  const products = [
-    { name: "Milk", onStock: 3, lastPrice: 1.99 },
-    { name: "Orange", onStock: 10, lastPrice: 1 },
-    { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-    { name: "Cheese", onStock: `${1}L`, lastPrice: 1.99 },
-    { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-    { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-    { name: "Sugar", onStock: 3, lastPrice: 1.45 },
-    { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-    { name: "Cheese", onStock: 3, lastPrice: 1.99 },
-  ].sort((a, b) => a.lastPrice - b.lastPrice);
-
-  const findProduct = (arr, product) => {
-    const found = arr.filter((el) =>
-      el.name.toLowerCase().includes(product.toLowerCase())
-    );
-    if (found) {
-      console.log(found);
-    } else {
-      console.log("No product with this name");
-    }
-    setSearchResults(found);
+  const selectOptions = [
+    { value: "all", label: "All" },
+    { value: "onStock", label: "In Stock" },
+    { value: "outOfStock", label: "Out of Stock" },
+  ];
+  const [selectedOption, setSelectedOption] = useState(selectOptions[0]);
+  const handleOnChange = (selectOption) => {
+    return setSelectedOption(selectOption);
   };
-  function Table({ products }) {
-    const names = products.map((el, index) => {
-      return (
-        <div className="item" key={index}>
-          <h2>{el.name}</h2>
-          <div className="options">
-            <button>Details</button>
-            <button>delete</button>
-          </div>
-        </div>
-      );
-    });
-    const onStock = products.map((el, index) => {
-      return (
-        <div className="item" key={index}>
-          <h2>{el.onStock}</h2>
-        </div>
-      );
-    });
-    const lastPrice = products.map((el, index) => {
-      return (
-        <div className="item" key={index}>
-          <h2>${el.lastPrice}</h2>
-        </div>
-      );
-    });
 
-    return (
-      <div className="table">
-        <div className="products">
-          <h2 className="table_title">Products</h2>
-          {names}
-        </div>
-        <div className="stock">
-          <h2 className="table_title">On Stock</h2>
-          {onStock}
-        </div>
-        <div className="last_price">
-          <h2 className="table_title">Last Price</h2>
-          {lastPrice}
-        </div>
-      </div>
-    );
+  useEffect(() => {
+    const handleProducts = () => {
+      const option =
+        selectedOption.value == "onStock"
+          ? { stock: true }
+          : selectedOption.value == "outOfStock"
+          ? { stock: false }
+          : { all: true };
+      const products = getProducts({ options: option });
+      setProducts(products);
+    };
+    handleProducts();
+  }, [selectedOption]);
+
+  function Table({ products }) {
+    const map = products.map((el) => {
+      return (
+        <>
+          <h2>{el.name}</h2>
+        </>
+      );
+    });
+    return <div className="table_container">{map}</div>;
   }
 
   return (
     <>
       <div className="products_container">
-        <div className="search_cont">
-          <input
-            type="text"
-            placeholder="Search"
-            value={product}
-            onChange={(e) => {
-              setProduct(e.target.value.trim());
-              findProduct(products, e.target.value.trim());
-            }}
-          />
+        <div className="products_main">
+          <h2>Inventory</h2>
+          <div className="search_cont">
+            <span>
+              <img className="search_icon" src={Search} alt="" />
+            </span>
+            <input
+              type="text"
+              placeholder="     Search"
+              value={product}
+              onChange={(e) => {
+                setProduct(e.target.value.trim());
+                findProduct(products, e.target.value.trim());
+              }}
+            />
+          </div>
           <button
+            className="add_icon_container"
             onClick={(e) => {
               setModalState((sta) => !sta);
             }}
           >
-            +Add
+            <picture>
+              <img src={Add} alt="" />
+            </picture>
           </button>
         </div>
-        {searchResults.length ? (
-          <Table products={searchResults} />
-        ) : (
-          <Table products={products} />
-        )}
+      </div>
+      <div className="options_container">
+        <Select
+          theme={{
+            colors: {
+              primary: "#5c56d1",
+              primary25: "rgb(53 50 100)",
+            },
+          }}
+          value={selectedOption}
+          onChange={handleOnChange}
+          options={selectOptions}
+        />
+        <Table products={products} />
       </div>
       {modalState ? (
         <Modal>

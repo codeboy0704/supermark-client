@@ -1,6 +1,6 @@
 import { createContext } from "react";
 const MenuContext = createContext({
-  color: "#fff",
+  color: "#413d96",
   status: false,
   background: null,
 });

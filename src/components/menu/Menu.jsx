@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 import "./menu.css";
-import React, { useStat, useContext, useEffect } from "react";
+import React, {
+  useStat,
+  useContext,
+  useEffect,
+  useState,
+  createContext,
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext.jsx";
 import Manimg from "../../images/avatars/man_1.svg";
 import HandleMenuState from "../../hooks/useHandleMenu.jsx";
-import MenuContext from "../../context/MenuContext";
+// import MenuContext from "../../context/MenuContext";
 import logOut from "../../utils/logOut";
 import logOutIMG from "../../images/logout.svg";
 import HomeIMG from "../../images/home.svg";
@@ -15,8 +21,21 @@ import ProductIcon from "../../images/icons8-box.svg";
 
 function Menu() {
   const userData = useContext(UserContext);
+  const [barTheme, setBarTheme] = useState({ color: "rgb(32 29 84)" });
   const navigate = useNavigate();
   const { menuOptions, menuState, setMenuState } = HandleMenuState();
+
+  useEffect(() => {
+    if (menuState) {
+      setBarTheme({
+        color: "#fff",
+      });
+    } else {
+      setBarTheme({
+        color: "rgb(32 29 84)",
+      });
+    }
+  }, [menuState]);
 
   return (
     <>
@@ -24,7 +43,7 @@ function Menu() {
         <i
           className="bx bx-menu-alt-left bx-lg logo"
           style={{
-            color: menuOptions.color,
+            color: barTheme.color,
             transition: "all 1.5s",
           }}
           onClick={() => {
