@@ -185,153 +185,6 @@ button {
   font-size: 1.1rem;
 }
 
-/* products section  */
-
-.products_container {
-  display: flex;
-  flex-flow: column wrap;
-  width: 100%;
-  background-color: #fff;
-}
-
-.products_main h2 {
-  flex-basis: 100%;
-  height: 30px;
-  text-align: center;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
-.search_cont {
-  position: relative;
-  width: 70%;
-  margin: 0;
-}
-
-.search_cont span {
-  position: absolute;
-  top: 0.7rem;
-  left: 0.3rem;
-}
-
-.search_cont input {
-  width: 100%;
-  height: 30px;
-  border: 1px solid;
-  border-radius: 10px;
-  margin: 0.5rem 0;
-  padding: 0 0.5rem;
-  outline: none;
-  border: 2px solid #9898fd;
-  text-align: center;
-}
-
-.products_main input:focus {
-  outline: #5c56d1 solid 1px;
-}
-
-.add_icon_container {
-  padding: 0;
-  margin: 0;
-  width: 40px;
-  background-color: transparent;
-  border: none;
-  transition: 0.5s;
-}
-
-.add_icon_container picture {
-  width: 100%;
-  height: 100%;
-}
-
-.add_icon_container picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.add_icon_container:hover {
-  transform: scale(1.1);
-}
-
-.products_main {
-  height: 30%;
-  margin-left: 2.7rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5rem 0;
-}
-
-.table {
-  background-color: rgb(223, 219, 219);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.table .last_price {
-  display: none;
-}
-
-.products,
-.stock,
-.last_price {
-  border: 1px solid;
-  text-align: center;
-}
-
-.table_title {
-  font-size: 27px;
-}
-
-.products,
-.stock,
-.last_price {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  border-bottom: 1px solid;
-  font-style: italic;
-  font-size: 25px;
-  margin: 2px 0;
-  padding: 0.2rem;
-}
-
-.stock div {
-  display: flex;
-  justify-content: center;
-}
-
-.item {
-  background-color: #ccc;
-  margin: 2px 0;
-  width: 100%;
-
-  padding: 0.5rem;
-  height: 75px;
-  border-top: 2px solid;
-}
-
-.item h2 {
-  font-size: 22px;
-  margin: auto 0;
-}
-
-.item .options {
-  margin-top: 3px;
-}
-
-.item .options button {
-  margin: 0 0.2rem;
-  outline: none;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 15px;
-  color: #fff;
-  background-color: #5c56d1;
-  text-transform: capitalize;
-}
-
 /* Personal Section  */
 .personal_container {
   height: 100vh;
@@ -485,43 +338,13 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #6c63ff;
+  background: #5f57f8;
   z-index: 1000;
   width: 90%;
   height: max-content;
   color: #fff;
   border-radius: 25px;
   padding: 0.8rem;
-}
-
-.modal h2 {
-  margin: 0.4rem 0;
-  font-style: italic;
-  font-size: 1.5rem;
-}
-
-.modal_details {
-  display: flex;
-  gap: 3%;
-  padding: 0.2rem;
-}
-
-.modal_details input {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  outline: none;
-  border: none;
-}
-
-.modal_details input:focus {
-  background-color: #f0f0f8;
-}
-
-.modal_details button {
-  padding: 0.5rem 0.8rem;
-  border-radius: 10px;
-  outline: none;
-  border: none;
 }
 
 /* Tablet design  */

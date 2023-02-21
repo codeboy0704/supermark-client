@@ -1,0 +1,27 @@
+[33mdeb583c[m[33m ([m[1;36mHEAD -> [m[1;32mv1[m[33m, [m[1;31morigin/v1[m[33m)[m menu context(v1.1), productSection(v1)
+[33m81a4457[m menu reconstructiuon(v1)
+[33m22c0bfe[m new menu styles(v1)
+[33m0852bad[m logOutFunc(done), new personalSection(v1)
+[33m7ada75d[m logOut(done), emailOnSignUp(done), signUpForm(modified)
+[33mf9bc308[m igoner file updated
+[33m8974e6e[m personal section style(mobile,tablet,desktop-done)
+[33m5c5d37c[m menu styles(v1, need to create a context), hooks created(fecthData, handleMenu), changes on Login(creation of the family)
+[33mf1e3ba8[m getfamily info(solved), menu context(v1)
+[33m6d0909c[m setLogin issue(solved), verifyAuth(done)
+[33m57dc998[m show navbar issue(solved), getFamilyDetails(unsolved), some changes on menu style(done)
+[33m6012f82[m global data on global context(issue to show data)
+[33mba295ce[m show globalinfo(solved-tempo), issue show navbar on app(unsolved
+[33m95e2329[m login issue, global data issue(unsolved)
+[33m61efdb1[m sort products by lastprice
+[33mbe7f805[m products section(mobile,tablet design)(done), search function productsSection(done)
+[33me33e2b6[m login and signUp mobile(done), auth section(done)
+[33m9898984[m login req(done)
+[33m55aacec[m Login section(done), show errors on login(done)
+[33m7a9d59a[m show errors(done), redirect to login(done)
+[33m810f9cb[m display errors from request(done)
+[33m2a19161[m acodeco data added
+[33m9c077e6[m signup request error(solved), menu design(tablet,cellphone), proxy done
+[33mffc2cc9[m menu design v1 done
+[33m757e958[m save user on form(done), form design(done)
+[33medb865a[m form design done
+[33m12bc540[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m basics

@@ -10,7 +10,7 @@ import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 import redirect from "./utils/redirect";
 import Menu from "./components/menu/Menu.jsx";
-import Products from "./components/Products.jsx";
+import Products from "./components/product/Products.jsx";
 import Modal from "./components/Modal";
 import { UserContext } from "./context/UserContext";
 import Personal from "./components/Personal";
