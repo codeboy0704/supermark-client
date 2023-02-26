@@ -68,7 +68,7 @@ function Menu() {
             </li>
             <li>
               <picture>
-                <Link to="/home">
+                <Link to="/">
                   <img src={HomeIMG} alt="" />
                 </Link>
               </picture>

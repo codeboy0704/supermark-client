@@ -7,6 +7,10 @@ button {
   cursor: pointer;
 }
 
+.app_container {
+  height: 100vh;
+}
+
 /* form  */
 
 .form_container,

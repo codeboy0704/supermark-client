@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
-import Main from "./components/Main";
+import Home from "./components/Home/Home";
 import validation from "./validations/signUp.validation";
 import Form from "./components/Form";
 import Login from "./components/Login.jsx";
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="app_container">
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
