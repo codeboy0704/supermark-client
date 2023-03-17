@@ -25,18 +25,6 @@ function Menu() {
   const navigate = useNavigate();
   const { menuOptions, menuState, setMenuState } = HandleMenuState();
 
-  useEffect(() => {
-    if (menuState) {
-      setBarTheme({
-        color: "#fff",
-      });
-    } else {
-      setBarTheme({
-        color: "rgb(32 29 84)",
-      });
-    }
-  }, [menuState]);
-
   return (
     <>
       <div className="logo_container" style={{}}>
@@ -53,7 +41,7 @@ function Menu() {
       </div>
       <div className={menuState ? "menu_cont expanded" : "menu_cont"}>
         <nav
-          className="menu"
+          className={menuState ? "menu expanded" : "menu"}
           onClick={() => {
             setMenuState((sta) => !sta);
           }}

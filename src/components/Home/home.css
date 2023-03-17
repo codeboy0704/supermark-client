@@ -1,5 +1,5 @@
 :root {
-  --main-color-purple: #1d4fc4;
+  --main-color-purple: rgb(32, 29, 84);
   --main-color-white: #fff;
   --main-color-black: #000;
 }
@@ -48,12 +48,11 @@
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-
   padding: 0.3rem;
 }
 
 .first_time_main div {
-  margin: 1rem 0;
+  margin: 0.8rem 0;
 }
 
 .first_time_main h2,
@@ -74,8 +73,6 @@ p {
   margin-bottom: 0.5rem;
 }
 
-.first_time_welcome_text {
-}
 .first_time_main .options_container {
   display: flex;
   flex-flow: row wrap;
@@ -93,14 +90,14 @@ p {
   font-weight: 600;
   cursor: pointer;
   outline: none;
-  transition: all 0.4s;
+  transition: all 0.2s;
 }
 
 .options_container button:hover {
   transform: scale(1.1);
   margin: 0 3px;
-  opacity: 0.8;
   border-radius: 20px;
+  opacity: 0.9;
 }
 
 .options_container .purple_one {
@@ -116,17 +113,45 @@ p {
 }
 
 .first_time_img_container {
+  display: flex;
+  width: 100%;
+  flex-flow: column wrap;
   text-align: center;
 }
 
-.first_time_img_container picture {
+.first_time_img_container .second {
+  display: none;
+}
+
+.first_time_img_container {
   width: 100%;
-  height: 100%;
   text-align: center;
 }
 
 .first_time_img_container picture img {
-  width: 90%;
+  width: 80%;
   object-fit: cover;
-  height: 100%;
+}
+
+/* .first_time_img_container img {
+  width: 80%;
+  object-fit: cover;
+}  */
+
+@media screen and (min-width: 550px) and (max-width: 768px) {
+  .first_time_img_container {
+    width: 50%;
+  }
+
+  .first_time_img_container picture img {
+    width: 60%;
+  }
+
+  .first_time_main {
+    flex-flow: row wrap;
+  }
+
+  .options_container {
+    width: 40%;
+  }
 }

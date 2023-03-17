@@ -1,9 +1,11 @@
 import "./home.css";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import validation from "../../validations/signUp.validation";
 import Logo from "../../images/pre-logos/icons8-dollar-coin.svg";
-import FirstTime from "./FirstTime";
+import FirstTime from "./FirstTime.jsx";
 function Main() {
+  const localStorage = window.localStorage;
+
   return (
     <div className="home_container">
       <div className="home_logo_container">

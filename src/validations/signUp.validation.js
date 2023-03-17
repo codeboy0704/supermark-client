@@ -1,7 +1,10 @@
-export const inLocal = () => {
+export const inLocal = ({ key }) => {
   const local = window.localStorage;
   if (!local.length) return false;
-  return true;
+  if (key) {
+    const data = local.getItem(key);
+    return data ? JSON.parse(data) : false;
+  }
 };
 
 export const userValidation = ({ user, error, setError }) => {

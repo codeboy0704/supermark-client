@@ -3,6 +3,7 @@ import { useLayoutEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import redirect from "../utils/redirect";
+import validation from "../validations/signUp.validation";
 
 const useFetchData = (token) => {
   const navigate = useNavigate();
@@ -25,10 +26,10 @@ const useFetchData = (token) => {
         setLogin(true);
         setUserInfo({ data: res.data, avatar: {} });
       } else {
-        redirect("/login", navigate);
+        // redirect("/login", navigate);
       }
     } catch (e) {
-      redirect("/login", navigate);
+      redirect("/", navigate);
     }
   };
 
