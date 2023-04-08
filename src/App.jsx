@@ -14,6 +14,7 @@ import Products from "./components/product/Products.jsx";
 import Modal from "./components/Modal";
 import { UserContext } from "./context/UserContext";
 import Personal from "./components/Personal";
+import Budget from "./components/budget/Budget";
 function App() {
   const navigate = useNavigate();
   const userData = useContext(UserContext);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/signup" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/budget" element={<Budget />} />
         <Route
           path="/user:id"
           element={userData.data ? <Personal data={userData.data} /> : null}

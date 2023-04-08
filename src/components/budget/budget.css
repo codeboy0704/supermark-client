@@ -1,0 +1,27 @@
+.budget_section_container {
+  width: 100%;
+}
+
+.swiper {
+  width: 100%;
+  padding: 10px;
+}
+
+.presentation_slide {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  height: 300px;
+  background-color: rgb(217, 182, 250);
+}
+
+.presentation_slide picture {
+  width: 100%;
+  height: 90%;
+}
+
+.presentation_slide picture img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
