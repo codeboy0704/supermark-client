@@ -5,7 +5,7 @@ function ByBudget() {
 const navigate = useNavigate();
   return (
     <button className='by_budget_opt budget_opt' onClick={()=>{
-        redirect('/pla/precio', navigate)
+        redirect('/budget/pla/precio', navigate)
     }}>
         <div>
             <h2>Plan de acuerdo a presupuesto</h2>

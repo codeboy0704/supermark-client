@@ -15,14 +15,25 @@ import Modal from "./components/Modal";
 import { UserContext } from "./context/UserContext";
 import Personal from "./components/Personal";
 import Budget from "./components/budget/Budget";
+import CanastaBasica from "./components/budget/cbasica/CanastaBasica";
 function App() {
+  const [geolocation, setGeolocation] = useState({latitude: null, longitude: null})
   const navigate = useNavigate();
   const userData = useContext(UserContext);
-  console.log(userData);
   const [menuOptions, setmenuOptions] = useState({
     color: "#fff",
     background: null,
   });
+
+  useEffect(() =>{
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition((position) => {
+         setGeolocation({latitude: position.coords.latitude, longitude: position.coords.longitude})
+      })
+    }else{
+      console.log("No se pudo obtener la ubicación");
+    }
+  }, [])
 
   return (
     <div className="app_container">
@@ -31,11 +42,16 @@ function App() {
         <Route path="/signup" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/budget" element={<Budget />} />
+        <Route path="/budget" element={<Budget />}/>
+        <Route path="/budget/pla/cbasica" element={<CanastaBasica />} />
+         <Route path="/budget/pla/cbasica:id" element={ <h1>Single Product details</h1> } />
+        
         <Route
           path="/user:id"
           element={userData.data ? <Personal data={userData.data} /> : null}
         />
+          
+       
       </Routes>
     </div>
   );

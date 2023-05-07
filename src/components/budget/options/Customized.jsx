@@ -6,7 +6,7 @@ function Customized() {
   const navigate = useNavigate();
   return (
     <button className="customize_opt budget_opt" onClick={()=>{
-        redirect("/pla/personalizado", navigate)
+        redirect("/budget/pla/personalizado", navigate)
     }}>
          <div>
             <h2>Planes Personalizados</h2>

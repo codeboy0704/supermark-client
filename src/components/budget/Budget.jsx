@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./budget.css";
 import MainLogo from "../MainLogo";
 import Basic from "./options/Basic";

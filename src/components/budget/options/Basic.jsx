@@ -7,7 +7,7 @@ function Basic() {
     const navigate = useNavigate();
   return (
     <button onClick={() =>{
-        redirect('/pla/cbasica', navigate)
+        redirect('/budget/pla/cbasica', navigate)
     }} className='canasta_opt budget_opt'>
         <div>
             <h2>Canasta Basica</h2>
