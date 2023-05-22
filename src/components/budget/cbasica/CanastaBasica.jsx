@@ -1,25 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import MainLogo from '../../MainLogo'
 import ProductList from './ProductList'
-import mockData from "./mock.data.json"
+import mockData from "./product.mock.data.json"
 import axios from 'axios'
 
 function CanastaBasica() {
-    const [data,setData] = useState([])
+    const [products,setProducts] = useState([])
+    const [page, setPage] = useState(0)
+    const [limit, setLimit] = useState(10)
+    const [totalPages, setTotalPages] = useState(0)
     const getProducts = async () =>{
-        const req = await axios.get('http://localhost:3001/api/products')
+        const req = await axios.post('/api/product/get/many', {page: page, limit: limit })
         const res = await req.data
-        setData(res.data)
+        setProducts(res.data.data)
+        setTotalPages(res.data.total)
     }
     useEffect(()=>{
-    //   getProducts()
-    }, [])
+      getProducts()
+    }, [page])
+    console.log(products)
     
     return (
     <>
         <MainLogo />
         <div className='canasta_basica_cont'>
-        <ProductList arr={mockData} />
+        {products ? <ProductList arr={products} /> : <h1>Loading...</h1>}
+        <div className='page_options'>
+        <button onClick={()=>{
+            if(page !== 0){
+                setPage(page - 1)
+            }
+        }}>Previous</button>
+        <button onClick={()=>{
+            if(page < totalPages )
+                setPage(page + 1)
+        }}>Next</button>
+        </div>
         </div>
     </>
   )
