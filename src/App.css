@@ -211,7 +211,7 @@ button {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  height: 65%;
+  height: 60%;
   padding-top: 2rem;
   margin-bottom: 0;
   font-size: 20px;
@@ -220,20 +220,26 @@ button {
 .personal_data picture {
   max-width: 90%;
   margin: 0;
+  height: 70%;
   text-align: center;
 }
 
 .personal_data picture img {
   border-radius: 40%;
-  width: 80%;
+  width: 90%;
   height: 100%;
   object-fit: cover;
 }
 
 .personal_data .metadata {
   margin: 0;
-  height: 30%;
+  height: 70%;
   width: 100%;
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .personal_data .metadata div {
@@ -244,91 +250,21 @@ button {
   margin: 1.5%;
 }
 
-.personal_data div h2,
-.family_info div h2 {
+.personal_data div h2{
   font-style: italic;
   margin-left: 0.1rem;
   color: #5c56d1;
   text-align: center;
-  font-size: 22px;
-}
-
-.family_info {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  gap: 4%;
-  height: 35%;
-}
-
-.family_info div {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 0.1rem;
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-}
-
-.family_options {
-  width: 100%;
-}
-
-.family_options button {
-  padding: 0.4rem;
-  margin: 0.2rem;
-  align-self: flex-start;
-  border-radius: 0.5rem;
-  outline: none;
-  border: none;
-  color: #ffff;
-  font-weight: 600;
-  font-size: 1rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.new_family_container {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-height: max-content;
-  min-height: 30%;
-}
-
-.new_family_container div h4 {
-  color: #413d96;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
   text-transform: capitalize;
-  margin-top: 0.5rem;
 }
 
-.new_family_container div {
-  width: 40%;
-  text-align: center;
+.personal_data div span{
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size: 15px;
 }
 
-.new_family_container div button {
-  border: none;
-  border-radius: 25%;
-  width: 70%;
-  margin: 0;
-  background-color: inherit;
-}
-
-.new_family_container button picture {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  cursor: pointer;
-}
-
-.new_family_container div picture img {
-  width: 80%;
-  object-fit: cover;
-  color: #fff;
-}
 
 /* Modal  */
 
