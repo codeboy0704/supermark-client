@@ -8,7 +8,7 @@ const navigate = useNavigate();
         redirect('/budget/pla/precio', navigate)
     }}>
         <div>
-            <h2>Plan de acuerdo a presupuesto</h2>
+            <h2>De acuerdo a presupuesto</h2>
         </div>
         <div>
             <img src={ByBudgetIMG} alt='presupuesto' />

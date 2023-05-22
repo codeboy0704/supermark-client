@@ -9,7 +9,7 @@ function Customized() {
         redirect("/budget/pla/personalizado", navigate)
     }}>
          <div>
-            <h2>Planes Personalizados</h2>
+            <h2>Personalizado</h2>
         </div>
         <div>
             <img src={CustomizeIMG } alt='personalizado' />
