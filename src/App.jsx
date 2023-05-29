@@ -16,8 +16,12 @@ import { UserContext } from "./context/UserContext";
 import Personal from "./components/Personal";
 import Budget from "./components/budget/Budget";
 import CanastaBasica from "./components/budget/cbasica/CanastaBasica";
+import GetProductsInformation from "./components/budget/cbasica/services/getProductsInformation";
+import ProductDetails from "./components/budget/cbasica/ProductDetails";
 function App() {
-  const [geolocation, setGeolocation] = useState({latitude: null, longitude: null})
+  const [geolocation, setGeolocation] = useState({latitude: null, longitude: null});
+  const [productDetails, setProductDetails] = useState(null);
+  console.log(productDetails)
   const navigate = useNavigate();
   const userData = useContext(UserContext);
   const [menuOptions, setmenuOptions] = useState({
@@ -34,6 +38,7 @@ function App() {
       console.log("No se pudo obtener la ubicación");
     }
   }, [])
+  console.log(geolocation)
 
   return (
     <div className="app_container">
@@ -43,9 +48,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
         <Route path="/budget" element={<Budget />}/>
-        <Route path="/budget/pla/cbasica" element={<CanastaBasica />} />
-         <Route path="/budget/pla/cbasica:id" element={ <h1>Single Product details</h1> } />
-        
+        <Route path="/budget/pla/cbasica" element={<CanastaBasica locationInfo={geolocation} setProductDetails={setProductDetails} />} />
+        <Route path="/budget/pla/cbasica:id" element={ <ProductDetails locationInfo={geolocation} details={productDetails} />} />
         <Route
           path="/user:id"
           element={userData.data ? <Personal data={userData.data} /> : null}
