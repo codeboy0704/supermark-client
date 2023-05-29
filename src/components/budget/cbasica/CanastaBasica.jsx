@@ -4,7 +4,7 @@ import ProductList from './ProductList'
 import mockData from "./product.mock.data.json"
 import axios from 'axios'
 
-function CanastaBasica() {
+function CanastaBasica({locationInfo, setProductDetails}) {
     const [products,setProducts] = useState([])
     const [page, setPage] = useState(0)
     const [limit, setLimit] = useState(10)
@@ -24,7 +24,7 @@ function CanastaBasica() {
     <>
         <MainLogo />
         <div className='canasta_basica_cont'>
-        {products ? <ProductList arr={products} /> : <h1>Loading...</h1>}
+        {products ? <ProductList arr={products} setProductDetails={setProductDetails} /> : <h1>Loading...</h1>}
         <div className='page_options'>
         <button onClick={()=>{
             if(page !== 0){
