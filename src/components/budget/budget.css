@@ -85,3 +85,65 @@
   height: 100%;
   object-fit: cover;
 }
+
+.page_options{
+  width: 100%;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.page_options button{
+  padding: 0.7rem;
+  margin: 0.2rem 0.5rem;
+  width: 90px;
+  background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgb(4, 1, 61) 0%, rgb(43, 12, 134) 32%, rgba(68, 0, 255, 1) 100%);
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.page_options button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.canasta_basica_cont{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Product cards */
+.product_card{
+  display: flex;
+  flex-flow: column wrap;
+  background-color: #fff;
+  padding: 0.2rem;
+  width: 300px;
+  border-radius: 15px;
+}
+
+.product_card button{
+  border: none;
+  background-color: #413d96;
+  padding: 0.5rem;
+  border-radius: 15px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.product_card button img{
+    border-radius: 15px;
+}
+
+.product_card button .title_cont{
+  margin: 0.3rem;
+} 
