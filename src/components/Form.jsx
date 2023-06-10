@@ -1,11 +1,7 @@
-import { useContext, useState } from "react";
-import Auth from "../images/auth.svg";
-import Completed from "../images/auth_completed.svg";
-
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import sendUser from "../utils/sendUser";
-import { UserContext } from "../context/UserContext";
+import {  useState, lazy } from "react";
+const AuthImg = lazy(() => import("../images/auth.svg"));
+import { useNavigate, Link } from "react-router-dom";
+const sendUser = lazy(() => import("../utils/sendUser"));
 import { emailValidation } from "../validations/signUp.validation";
 
 function Form() {
@@ -13,7 +9,6 @@ function Form() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [familyID, setFamilyID] = useState("");
   const [err, setErr] = useState({
     message: "",
     sta: { user: true, password: true, email: true },
@@ -50,7 +45,9 @@ function Form() {
     <div className="form_container">
       <form>
         <div className="form_txt">
-          <h2>Sign Up</h2>
+          <div className="title_cont">
+           <h2>Sign Up</h2>
+          </div>
           <div>
             <input
               type="text"
@@ -120,7 +117,7 @@ function Form() {
         </div>
 
         <picture>
-          <img src={Auth} alt="sign up" />
+          <img src={AuthImg} alt="sign up" />
         </picture>
       </form>
     </div>

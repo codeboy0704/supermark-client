@@ -1,27 +1,23 @@
 /* eslint-disable no-unused-vars */
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-
+import { useContext, useEffect, useLayoutEffect, useState, lazy, Suspense } from "react";
 import "./App.css";
-import Home from "./components/Home/Home";
-import validation from "./validations/signUp.validation";
-import Form from "./components/Form";
-import Login from "./components/Login.jsx";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
-import axios from "axios";
-import redirect from "./utils/redirect";
-import Menu from "./components/menu/Menu.jsx";
-import Products from "./components/product/Products.jsx";
-import Modal from "./components/Modal";
 import { UserContext } from "./context/UserContext";
-import Personal from "./components/Personal";
-import Budget from "./components/budget/Budget";
-import CanastaBasica from "./components/budget/cbasica/CanastaBasica";
-import GetProductsInformation from "./components/budget/cbasica/services/getProductsInformation";
-import ProductDetails from "./components/budget/cbasica/ProductDetails";
+const Home = lazy(() => import("./components/Home/Home"));
+const Form = lazy(() => import("./components/Form"));
+const validation = lazy(() => import("./validations/signUp.validation"));
+const Login = lazy(() => import("./components/Login.jsx"));
+const redirect = lazy(() => import("./utils/redirect"))
+const Products = lazy(() => import("./components/product/Products.jsx"));
+const Modal = lazy(() => import("./components/Modal"));
+const Personal = lazy(() => import("./components/Personal"));
+const Budget = lazy(() => import("./components/budget/Budget"));
+const CanastaBasica = lazy(() => import("./components/budget/cbasica/CanastaBasica"));
+const GetProductsInformation = lazy(() => import("./components/budget/cbasica/services/getProductsInformation"));
+const ProductDetails = lazy(() => import("./components/budget/cbasica/ProductDetails"));
 function App() {
   const [geolocation, setGeolocation] = useState({latitude: null, longitude: null});
   const [productDetails, setProductDetails] = useState(null);
-  console.log(productDetails)
   const navigate = useNavigate();
   const userData = useContext(UserContext);
   const [menuOptions, setmenuOptions] = useState({
@@ -42,6 +38,7 @@ function App() {
 
   return (
     <div className="app_container">
+      <Suspense>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Form />} />
@@ -54,9 +51,8 @@ function App() {
           path="/user:id"
           element={userData.data ? <Personal data={userData.data} /> : null}
         />
-          
-       
       </Routes>
+      </Suspense>
     </div>
   );
 }

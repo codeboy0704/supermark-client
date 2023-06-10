@@ -2,15 +2,15 @@
 
 // import { UserContext } from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
-import Add from "../images/add.svg";
-import Search from "../images/search.svg";
+// import Add from "../images/add.svg";
+// import Search from "../images/search.svg";
 import axios from "axios";
 function Personal({ data }) {
   const { _id, name, email, createdAt} = data.user;
   console.log(data)
   return (
     <div className="personal_container">
-      {data ? (
+      {data && (
         <>
           <div className="personal_data">
             <picture>
@@ -32,7 +32,7 @@ function Personal({ data }) {
             </div>
           </div> 
         </>
-      ) : null}
+      ) }
     </div>
   );
 }
