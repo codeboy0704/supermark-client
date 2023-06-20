@@ -6,17 +6,18 @@ import React, {
   useEffect,
   useState,
   createContext,
+  lazy,
+  Suspense
 } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext.jsx";
 import Manimg from "../../images/avatars/man_1.svg";
 import HandleMenuState from "../../hooks/useHandleMenu.jsx";
-// import MenuContext from "../../context/MenuContext";
-import logOut from "../../utils/logOut";
+// import MenuContext from "../../context/MenuContext"
+ import logOut from "../../utils/logOut";
 import logOutIMG from "../../images/logout.svg";
 import HomeIMG from "../../images/home.svg";
 import Budget from "../../images/icons8-money-box.svg";
-import Profile from "../../images/profile.svg";
 import ProductIcon from "../../images/icons8-box.svg";
 
 function Menu() {
@@ -27,6 +28,7 @@ function Menu() {
 
   return (
     <>
+
       <div className="logo_container" style={{}}>
         <i
           className="bx bx-menu-alt-left bx-lg logo"
@@ -90,6 +92,7 @@ function Menu() {
           </ul>
         </nav>
       </div>
+     
     </>
   );
 }

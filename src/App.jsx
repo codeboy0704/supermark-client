@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useLayoutEffect, useState, lazy, Suspense } from "react";
+import { useContext, useEffect, useLayoutEffect, useState, lazy, Suspense, createContext } from "react";
 import "./App.css";
 import { UserContext } from "./context/UserContext";
 const Home = lazy(() => import("./components/Home/Home"));
@@ -15,9 +15,12 @@ const Budget = lazy(() => import("./components/budget/Budget"));
 const CanastaBasica = lazy(() => import("./components/budget/cbasica/CanastaBasica"));
 const GetProductsInformation = lazy(() => import("./components/budget/cbasica/services/getProductsInformation"));
 const ProductDetails = lazy(() => import("./components/budget/cbasica/ProductDetails"));
+import ProductDetailsContext from "./context/ProductDetailsContext";
+import { getUSerLocationData } from "./utils/getUserLocationData";
+import LocationInfoContext from "./context/LocationInfoContext";
 function App() {
-  const [geolocation, setGeolocation] = useState({latitude: null, longitude: null});
-  const [productDetails, setProductDetails] = useState(null);
+  const [geolocation, setGeoLocation] = useState({latitude: null, longitude: null});
+  const [productDetails, setProductDetails] = useState({});
   const navigate = useNavigate();
   const userData = useContext(UserContext);
   const [menuOptions, setmenuOptions] = useState({
@@ -26,34 +29,31 @@ function App() {
   });
 
   useEffect(() =>{
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((position) => {
-         setGeolocation({latitude: position.coords.latitude, longitude: position.coords.longitude})
-      })
-    }else{
-      console.log("No se pudo obtener la ubicación");
-    }
+   getUSerLocationData(setGeoLocation)
   }, [])
-  console.log(geolocation)
 
   return (
+<LocationInfoContext.Provider value={geolocation}>
+  <ProductDetailsContext.Provider value={productDetails}>
     <div className="app_container">
-      <Suspense>
+     <Suspense>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
         <Route path="/budget" element={<Budget />}/>
-        <Route path="/budget/pla/cbasica" element={<CanastaBasica locationInfo={geolocation} setProductDetails={setProductDetails} />} />
-        <Route path="/budget/pla/cbasica:id" element={ <ProductDetails locationInfo={geolocation} details={productDetails} />} />
+        <Route path="/budget/pla/cbasica" element={<CanastaBasica setProductDetails={setProductDetails} />} />
+        <Route path="/budget/pla/cbasica:id" element={ <ProductDetails />} />
         <Route
           path="/user:id"
           element={userData.data ? <Personal data={userData.data} /> : null}
         />
       </Routes>
-      </Suspense>
+     </Suspense>
     </div>
+  </ProductDetailsContext.Provider>
+</LocationInfoContext.Provider>
   );
 }
 

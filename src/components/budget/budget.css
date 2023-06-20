@@ -1,5 +1,7 @@
  /* Path: src/components/budget/budget.css */
-.budget_section_container {
+
+
+ .budget_section_container {
   width: 100%;
 }
 
@@ -96,8 +98,8 @@
   padding: 0.7rem;
   margin: 0.2rem 0.5rem;
   width: 90px;
-  background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgb(4, 1, 61) 0%, rgb(43, 12, 134) 32%, rgba(68, 0, 255, 1) 100%);
+
+    background: var(--opt-btn-color);
     color: #fff;
     border: none;
     text-transform: uppercase;
@@ -125,19 +127,28 @@
   display: flex;
   flex-flow: column wrap;
   background-color: #fff;
-  padding: 0.2rem;
+  padding: 0.3rem;
   width: 300px;
   border-radius: 15px;
 }
 
 .product_card button{
   border: none;
-  background-color: #413d96;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   padding: 0.5rem;
   border-radius: 15px;
+  height: 300px;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.product_card button:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  margin: 0.5rem 0;
 }
 
 .product_card button img{
@@ -146,4 +157,10 @@
 
 .product_card button .title_cont{
   margin: 0.3rem;
+  color: rgb(63, 39, 134);
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 } 
+
+.product_card button .title_cont h2{
+  margin: 0.8rem;
+}

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import MainLogo from '../../MainLogo'
 import ProductList from './ProductList'
 import mockData from "./product.mock.data.json"
 import axios from 'axios'
+import LocationInfoContext from '../../../context/LocationInfoContext'
 
-function CanastaBasica({locationInfo, setProductDetails}) {
+function CanastaBasica({setProductDetails}) {
+    const locationInfo = useContext(LocationInfoContext)
     const [products,setProducts] = useState([])
     const [page, setPage] = useState(0)
     const [limit, setLimit] = useState(10)
@@ -21,8 +23,9 @@ function CanastaBasica({locationInfo, setProductDetails}) {
     console.log(products)
     
     return (
-    <>
+        <>
         <MainLogo />
+        {locationInfo.latitude || locationInfo.longitude ? (
         <div className='canasta_basica_cont'>
         {products ? <ProductList arr={products} setProductDetails={setProductDetails} /> : <h1>Loading...</h1>}
         <div className='page_options'>
@@ -37,7 +40,10 @@ function CanastaBasica({locationInfo, setProductDetails}) {
         }}>Next</button>
         </div>
         </div>
-    </>
+        ): (
+            <h1>Obteniendo ubicación...</h1>
+        )}
+        </>
   )
 }
 

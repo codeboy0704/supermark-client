@@ -1,3 +1,7 @@
+:root {
+  --opt-btn-color: linear-gradient(90deg, rgb(22, 17, 119) 0%, rgb(43, 12, 134) 32%, rgba(68, 0, 255, 1) 100%);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
