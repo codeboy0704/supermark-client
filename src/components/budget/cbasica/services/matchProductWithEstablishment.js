@@ -2,10 +2,15 @@
 
 export default function matchProductsWithEstablishment({product, establishments}) {
     const results = []
-    const match = establishments.map(sta =>{
-        const found = product.prices.find(pr => pr._id == sta._id || pr.name == sta.name)
-        return results.push(found)
+    const match = establishments.map(esta =>{
+        const found = product.prices.find(pr => pr.stablishment == esta.name)
+        if (found) {
+            results.push({
+                name: found.stablishment,
+                price: found.price,
+                _id: found._id
+            })
+        }   
     })
-    console.log(product)
     return results
 }
