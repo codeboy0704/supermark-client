@@ -1,6 +1,4 @@
  /* Path: src/components/budget/budget.css */
-
-
  .budget_section_container {
   width: 100%;
 }
@@ -98,7 +96,6 @@
   padding: 0.7rem;
   margin: 0.2rem 0.5rem;
   width: 90px;
-
     background: var(--opt-btn-color);
     color: #fff;
     border: none;
@@ -163,4 +160,60 @@
 
 .product_card button .title_cont h2{
   margin: 0.8rem;
+}
+
+
+@media (min-width: 550px){
+  .canasta_basica_cont{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+    .product_card{
+      width: 100%;
+    }
+
+        .product_card button:hover{
+          margin: 0.3rem;
+        }
+
+        .page_options{
+          grid-column: span 2;
+        }
+
+    .product_main div img{
+      width: 80%;
+    }
+}
+
+@media (min-width: 768px){
+  .canasta_basica_cont{
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+
+  .product_card{
+    width: 100%;
+  }
+
+  .canasta_basica_cont:nth-child(10){
+    grid-column: span 3;
+    background-color: red;
+  }
+
+  .product_card button:hover{
+    margin: 0.3rem;
+  }
+
+  .page_options{
+    grid-column: span 3;
+  }
+
+  .product_main div img{
+    width: 80%;
+  }
 }
