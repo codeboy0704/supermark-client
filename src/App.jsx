@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useLayoutEffect, useState, lazy, Suspense, createContext } from "react";
 import "./App.css";
+import "./components/budget/budget.css";
+import "./components/menu/menu.css"
 import { UserContext } from "./context/UserContext";
+import ProductDetailsContext from "./context/ProductDetailsContext";
+import { getUSerLocationData } from "./utils/getUserLocationData";
+import LocationInfoContext from "./context/LocationInfoContext";
 const Home = lazy(() => import("./components/Home/Home"));
 const Form = lazy(() => import("./components/Form"));
 const validation = lazy(() => import("./validations/signUp.validation"));
@@ -15,9 +20,6 @@ const Budget = lazy(() => import("./components/budget/Budget"));
 const CanastaBasica = lazy(() => import("./components/budget/cbasica/CanastaBasica"));
 const GetProductsInformation = lazy(() => import("./components/budget/cbasica/services/getProductsInformation"));
 const ProductDetails = lazy(() => import("./components/budget/cbasica/ProductDetails"));
-import ProductDetailsContext from "./context/ProductDetailsContext";
-import { getUSerLocationData } from "./utils/getUserLocationData";
-import LocationInfoContext from "./context/LocationInfoContext";
 function App() {
   const [geolocation, setGeoLocation] = useState({latitude: null, longitude: null});
   const [productDetails, setProductDetails] = useState({});
