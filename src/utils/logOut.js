@@ -11,7 +11,7 @@ export default async function logOut() {
     const newToken = await req.data.token;
     document.cookie = `token=${newToken}`;
     if (req.status == 201) {
-      return (window.location.href = "/login");
+      return (window.location.href = "/");
     } else {
       console.log(req.data.message);
     }

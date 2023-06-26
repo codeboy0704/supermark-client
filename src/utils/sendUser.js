@@ -4,7 +4,7 @@ import redirect from "./redirect";
 export default async function sendUser({ user, path, setErr, navigate }) {
   try {
     const req = await axios(path, {
-      method: "post",
+      method: "POST",
       data: user,
     });
 
