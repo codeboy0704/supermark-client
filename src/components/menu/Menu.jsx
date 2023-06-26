@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import "./menu.css";
+
 import React, {
   useStat,
   useContext,
