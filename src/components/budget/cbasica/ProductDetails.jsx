@@ -11,9 +11,10 @@ const productDetails = useContext(ProductDetailsContext);
   const [establishments, setEstablishments] = useState([]);
   const [matchPrices, setMatchPrices] = useState([]);
 
-  useLayoutEffect(() => {
+useLayoutEffect(() => {
   getNearestEstablishmentsInfo({setEstablishments, locationInfo})
 }, [locationInfo])
+
 
 useEffect(()=>{
      let match = matchProductsWithEstablishment({ establishments: establishments, product: productDetails })
@@ -25,11 +26,12 @@ useEffect(()=>{
   return (
     <div className='product_details_cont'>
       <div className='primal_info'>
-        <h2>{productDetails.name}</h2>
+        <h1>{productDetails.name}</h1>
         <picture>
           <img src={mockIMG} alt={productDetails.name} />
         </picture>
       </div>
+      {/* <h2 className='best_prices_title' style={{textAlign: "left"}}>Mejores precios:</h2> */}
       <EstablishmentList establishments={matchPrices} />
     </div>
   )

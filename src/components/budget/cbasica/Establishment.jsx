@@ -1,12 +1,17 @@
-import React from 'react'
 
 function EstablishmentList({ establishments }) {
   const map = establishments.map(establishment => {
     return (
       <div className='establishments_details_cont' key={establishment._id}>
         <div className='key_info'>
-          <h2>Establecimiento: {establishment.name}</h2>
-          <h2>Precio: {establishment.price}</h2>
+          <div>
+          <h2>Establecimiento:</h2>
+          <h3>{establishment.name}</h3>
+          </div>
+          <div>
+            <h2>Precio:</h2>
+            <h3>${establishment.price}</h3>
+          </div>
           <div>
             <h2>Distancia Aproximada: </h2>
             <h3>200km</h3>
@@ -15,7 +20,11 @@ function EstablishmentList({ establishments }) {
       </div>
     ) 
   })
-  return map
+  return(
+    <div className="establishments_list_cont">
+      {map}
+    </div>
+  )
 }
 
 export default EstablishmentList
