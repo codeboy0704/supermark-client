@@ -41,9 +41,9 @@ function ProductDetails({ setProductDetails }) {
 
 
   useLayoutEffect(() => {
-    if (!productDetails.length) {
-      let details = getProductDetails();
-    }
+    if (!productDetails.length)
+      getProductDetails();
+
     getNearestEstablishmentsInfo({ setEstablishments, locationInfo })
   }, [locationInfo])
 
@@ -52,7 +52,6 @@ function ProductDetails({ setProductDetails }) {
     let match = matchProductsWithEstablishment({ establishments: establishments, product: productDetails })
     setMatchPrices(match);
     getImage()
-    console.log(productDetails)
   }, [establishments, productDetails])
 
   return (

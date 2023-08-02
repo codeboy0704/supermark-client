@@ -21,7 +21,7 @@ const CanastaBasica = lazy(() => import("./components/budget/cbasica/CanastaBasi
 const GetProductsInformation = lazy(() => import("./components/budget/cbasica/services/getProductsInformation"));
 const ProductDetails = lazy(() => import("./components/budget/cbasica/ProductDetails"));
 function App() {
-  const [geolocation, setGeoLocation] = useState({latitude: null, longitude: null});
+  const [geolocation, setGeoLocation] = useState({ latitude: null, longitude: null });
   const [productDetails, setProductDetails] = useState({});
   const navigate = useNavigate();
   const userData = useContext(UserContext);
@@ -30,32 +30,32 @@ function App() {
     background: null,
   });
 
-  useEffect(() =>{
-   getUSerLocationData(setGeoLocation)
+  useEffect(() => {
+    getUSerLocationData(setGeoLocation)
   }, [])
 
   return (
-<LocationInfoContext.Provider value={geolocation}>
-  <ProductDetailsContext.Provider value={productDetails}>
-    <div className="app_container">
-     <Suspense>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Form />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/budget" element={<Budget />}/>
-        <Route path="/budget/pla/cbasica" element={<CanastaBasica setProductDetails={setProductDetails} />} />
-        <Route path="/budget/pla/cbasica:id" element={ <ProductDetails />} />
-        <Route
-          path="/user:id"
-          element={userData.data ? <Personal data={userData.data} /> : null}
-        />
-      </Routes>
-     </Suspense>
-    </div>
-  </ProductDetailsContext.Provider>
-</LocationInfoContext.Provider>
+    <ProductDetailsContext.Provider value={productDetails}>
+      <LocationInfoContext.Provider value={geolocation}>
+        <div className="app_container">
+          <Suspense>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<Form />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/budget" element={<Budget />} />
+              <Route path="/budget/pla/cbasica" element={<CanastaBasica setProductDetails={setProductDetails} />} />
+              <Route path="/budget/pla/cbasica:id" element={<ProductDetails setProductDetails={setProductDetails} />} />
+              <Route
+                path="/user:id"
+                element={userData.data ? <Personal data={userData.data} /> : null}
+              />
+            </Routes>
+          </Suspense>
+        </div>
+      </LocationInfoContext.Provider>
+    </ProductDetailsContext.Provider>
   );
 }
 
