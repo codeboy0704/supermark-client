@@ -2,12 +2,8 @@
 
 // import { UserContext } from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
-// import Add from "../images/add.svg";
-// import Search from "../images/search.svg";
-import axios from "axios";
 function Personal({ data }) {
-  const { _id, name, email, createdAt} = data.user;
-  console.log(data)
+  const { _id, name, email, createdAt } = data.user;
   return (
     <div className="personal_container">
       {data && (
@@ -30,9 +26,9 @@ function Personal({ data }) {
                 <h2><span>Created at: </span>{createdAt}</h2>
               </div>
             </div>
-          </div> 
+          </div>
         </>
-      ) }
+      )}
     </div>
   );
 }

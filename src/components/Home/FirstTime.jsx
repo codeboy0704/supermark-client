@@ -38,7 +38,7 @@ function FirstTime() {
             }}
             className="white_one"
           >
-            Sing In
+            Sign In
           </button>
         </div>
       </div>

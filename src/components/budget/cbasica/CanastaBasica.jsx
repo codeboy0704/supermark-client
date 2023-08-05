@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import MainLogo from '../../MainLogo'
 import ProductList from './ProductList'
-import mockData from "./product.mock.data.json"
 import axios from 'axios'
 import LocationInfoContext from '../../../context/LocationInfoContext'
 
