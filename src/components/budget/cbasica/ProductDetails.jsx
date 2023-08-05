@@ -4,8 +4,9 @@ import matchProductsWithEstablishment from './services/matchProductWithEstablish
 import ProductDetailsContext from '../../../context/ProductDetailsContext';
 import LocationInfoContext from '../../../context/LocationInfoContext';
 import EstablishmentList from './Establishment';
-import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import getProductDetails from './services/getProductDetails';
+import getProductImage from './services/getProductImage';
 
 function ProductDetails({ setProductDetails }) {
   const currentPath = useLocation();
@@ -16,34 +17,11 @@ function ProductDetails({ setProductDetails }) {
   const [matchPrices, setMatchPrices] = useState([]);
   const [image, setImage] = useState([])
 
-  const getImage = async () => {
-    try {
-      const res = await axios.get('/api/image/sal')
-      console.log(res.data.data.data)
-      const base64Img = btoa(
-        new Uint8Array(res.data.data.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
-      )
-      setImage(`data:${res.headers['content-type']};base64,${base64Img}`)
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  const getProductDetails = async () => {
-    try {
-      const res = await axios.post('/api/product/get/one', { id: id })
-      setProductDetails(res.data.data)
-
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
 
   useLayoutEffect(() => {
-    if (!productDetails.length)
-      getProductDetails();
-
+    if (!productDetails.length) {
+      getProductDetails({ setProductDetails: setProductDetails, id: id });
+    }
     getNearestEstablishmentsInfo({ setEstablishments, locationInfo })
   }, [locationInfo])
 
@@ -51,7 +29,7 @@ function ProductDetails({ setProductDetails }) {
   useEffect(() => {
     let match = matchProductsWithEstablishment({ establishments: establishments, product: productDetails })
     setMatchPrices(match);
-    getImage()
+    let image = getProductImage(setImage);
   }, [establishments, productDetails])
 
   return (
@@ -59,7 +37,7 @@ function ProductDetails({ setProductDetails }) {
       <div className='primal_info'>
         <h1>{productDetails.name}</h1>
         <picture>
-          <img src={image} alt="sal" />
+          <img src={image} alt="sal" />  //obtener desde endpoint del api
         </picture>
       </div>
       {/* <h2 className='best_prices_title' style={{textAlign: "left"}}>Mejores precios:</h2> */}
