@@ -7,10 +7,8 @@ import redirect from "../utils/redirect";
 const useFetchData = (token) => {
   const navigate = useNavigate();
   const [login, setLogin] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    data: { user: { families: [] }, family: {} },
-    login: false,
-  });
+  const [userData, setUserData] = useState({ user: {} });
+  console.log(userData)
 
   const getInfo = async () => {
     try {
@@ -22,8 +20,10 @@ const useFetchData = (token) => {
       });
       if (req.status === 201) {
         const res = await req.data;
+        const data = res.data.user
+        console.log(data)
+        setUserData({ user: data })
         setLogin(true);
-        setUserInfo({ data: res.data, avatar: {} });
       }
     } catch (e) {
       redirect("/", navigate);
@@ -33,10 +33,8 @@ const useFetchData = (token) => {
   useLayoutEffect(() => {
     getInfo();
   }, []);
-
   return {
-    userInfo,
-    login,
+    user: { ...userData, login: login }
   };
 };
 
