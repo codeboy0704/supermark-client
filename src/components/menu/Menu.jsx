@@ -14,21 +14,20 @@ import { UserContext } from "../../context/UserContext.jsx";
 import Manimg from "../../images/avatars/man_1.svg";
 import HandleMenuState from "../../hooks/useHandleMenu.jsx";
 // import MenuContext from "../../context/MenuContext"
- import logOut from "../../utils/logOut";
+import logOut from "../../utils/logOut";
 import logOutIMG from "../../images/logout.svg";
 import HomeIMG from "../../images/home.svg";
 import Budget from "../../images/icons8-money-box.svg";
-import ProductIcon from "../../images/icons8-box.svg";
 
 function Menu() {
-  const userData = useContext(UserContext);
+  const data = useContext(UserContext);
+  console.log(data)
   const [barTheme, setBarTheme] = useState({ color: "rgb(32 29 84)" });
   const navigate = useNavigate();
   const { menuOptions, menuState, setMenuState } = HandleMenuState();
 
   return (
     <>
-
       <div className="logo_container" style={{}}>
         <i
           className="bx bx-menu-alt-left bx-lg logo"
@@ -51,7 +50,7 @@ function Menu() {
           <ul>
             <li className="user">
               <picture className="user_icon">
-                <Link to={`/user:${userData.data.user._id}`}>
+                <Link to={`/user:${data.user._id}`}>
                   <img src={Manimg} alt="" style={{ cursor: "pointer" }} />
                 </Link>
               </picture>
@@ -60,13 +59,6 @@ function Menu() {
               <picture>
                 <Link to="/">
                   <img src={HomeIMG} alt="" />
-                </Link>
-              </picture>
-            </li>
-            <li>
-              <picture>
-                <Link to="/products">
-                  <img src={ProductIcon} alt="" />
                 </Link>
               </picture>
             </li>
@@ -92,7 +84,7 @@ function Menu() {
           </ul>
         </nav>
       </div>
-     
+
     </>
   );
 }

@@ -1,6 +1,6 @@
 .logo_container {
   display: flex;
-  position:fixed;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 200;
@@ -30,6 +30,7 @@
 .menu_cont.expanded {
   display: flex;
   width: 25%;
+  border-right: 1px solid #fdf5f5;
 }
 
 .menu {
@@ -46,6 +47,7 @@
 .menu.expanded {
   display: flex;
 }
+
 .menu ul {
   display: flex;
   flex-flow: column nowrap;
