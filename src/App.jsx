@@ -24,7 +24,7 @@ function App() {
   const [geolocation, setGeoLocation] = useState({ latitude: null, longitude: null });
   const [productDetails, setProductDetails] = useState({});
   const navigate = useNavigate();
-  const userData = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [menuOptions, setmenuOptions] = useState({
     color: "#fff",
     background: null,
@@ -49,7 +49,7 @@ function App() {
               <Route path="/budget/pla/cbasica:id" element={<ProductDetails setProductDetails={setProductDetails} />} />
               <Route
                 path="/user:id"
-                element={userData.data ? <Personal data={userData.data} /> : null}
+                element={user ? <Personal data={user} /> : null}
               />
             </Routes>
           </Suspense>

@@ -3,7 +3,7 @@
 // import { UserContext } from "../context/UserContext";
 import Manimg from "../images/avatars/man_1.svg";
 function Personal({ data }) {
-  const { _id, name, email, createdAt } = data.user;
+  const { _id, name, email, createdAt } = data;
   return (
     <div className="personal_container">
       {data && (
