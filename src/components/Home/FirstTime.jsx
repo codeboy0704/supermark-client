@@ -11,10 +11,12 @@ function FirstTime() {
     <div className="first_time_container">
       <div className="first_time_main">
         <div className="first_time_welcome_text">
-          <h2>
-            Welcome To WCHEAPER
-            {/* {userData ? userData.data.user.name.toUpperCase() : ""} */}
-          </h2>
+          <div>
+            <h2>
+              Welcome To WCHEAPER
+              {/* {userData ? userData.data.user.name.toUpperCase() : ""} */}
+            </h2>
+          </div>
           <p>
             La nueva forma de saber donde es mas combeniente para ti hacer tus
             compras y conocer exactamente que productos tienes en casa y su
