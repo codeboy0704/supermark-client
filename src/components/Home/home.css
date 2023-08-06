@@ -45,6 +45,7 @@
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .first_time_main {
@@ -137,10 +138,34 @@ p {
   object-fit: cover;
 }
 
-/* .first_time_img_container img {
-  width: 80%;
-  object-fit: cover;
-}  */
+/*Benefits*/
+.benefits_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  padding: 0.3rem 0.2rem;
+}
+
+.benefits_container .benefits_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  background-color: #dcdbfc;
+  text-align: center;
+  color: #413d96;
+  width: 65%;
+  height: 200px;
+  margin: 0.1rem 0.4rem;
+  border-radius: 20px;
+  padding: 0.3rem;
+}
+
+
+.benefits_item div h3 {
+  margin: 0.2rem 0;
+}
 
 @media screen and (min-width: 550px) and (max-width: 768px) {
   .first_time_img_container {
