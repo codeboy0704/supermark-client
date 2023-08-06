@@ -4,9 +4,11 @@ import redirect from "../../utils/redirect";
 import { UserContext } from "../../context/UserContext";
 import Main_IMG from "../../images/welcome/credit_card.svg";
 import Second_main_img from "../../images/welcome/undraw_savings_re_eq4w.svg";
+import SavedTime from "./about/SaveTime";
+import SavedMoney from "./about/SavedMoney";
+import Available from "./about/Available";
 function FirstTime() {
   const navigate = useNavigate();
-  // const userData = useContext(UserContext);
   return (
     <div className="first_time_container">
       <div className="first_time_main">
@@ -43,6 +45,11 @@ function FirstTime() {
             Sign In
           </button>
         </div>
+      </div>
+      <div className="benefits_container">
+        <SavedTime />
+        <SavedMoney />
+        <Available />
       </div>
     </div>
   );
