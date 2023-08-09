@@ -15,34 +15,33 @@ import Manimg from "../../images/avatars/man_1.svg";
 import HandleMenuState from "../../hooks/useHandleMenu.jsx";
 // import MenuContext from "../../context/MenuContext"
 import logOut from "../../utils/logOut";
-import logOutIMG from "../../images/logout.svg";
-import HomeIMG from "../../images/home.svg";
-import Budget from "../../images/icons8-money-box.svg";
+import logOutIMG from "../../images/menu/logout.png";
+import HomeIMG from "../../images/menu/home.png";
+import UserIMG from "../../images/menu/user.png";
 
 function Menu() {
   const data = useContext(UserContext);
-  console.log(data)
   const [barTheme, setBarTheme] = useState({ color: "rgb(32 29 84)" });
   const navigate = useNavigate();
-  const { menuOptions, menuState, setMenuState } = HandleMenuState();
+  const [menuState, setMenuState] = useState(false)
 
   return (
     <>
-      <div className="logo_container" style={{}}>
-        <i
-          className="bx bx-menu-alt-left bx-lg logo"
-          style={{
-            color: barTheme.color,
-            transition: "all 1.5s",
-          }}
-          onClick={() => {
-            setMenuState((sta) => !sta);
-          }}
-        ></i>
-      </div>
-      <div className={menuState ? "menu_cont expanded" : "menu_cont"}>
+      <div className={menuState ? "menu_container expand" : "menu_container"}>
+        <div className="logo_container">
+          <i
+            className="bx bx-menu-alt-left bx-md logo"
+            style={{
+              color: "#fff",
+              transition: "all 1.8s",
+            }}
+            onClick={() => {
+              setMenuState((sta) => !sta);
+            }}
+          ></i>
+        </div>
         <nav
-          className={menuState ? "menu expanded" : "menu"}
+          className={menuState ? "menu isvisible" : "menu"}
           onClick={() => {
             setMenuState((sta) => !sta);
           }}
@@ -51,7 +50,7 @@ function Menu() {
             <li className="user">
               <picture className="user_icon">
                 <Link to={`/user:${data.user._id}`}>
-                  <img src={Manimg} alt="" style={{ cursor: "pointer" }} />
+                  <img src={UserIMG} alt="" style={{ cursor: "pointer" }} />
                 </Link>
               </picture>
             </li>
@@ -59,13 +58,6 @@ function Menu() {
               <picture>
                 <Link to="/">
                   <img src={HomeIMG} alt="" />
-                </Link>
-              </picture>
-            </li>
-            <li>
-              <picture>
-                <Link to="/budget">
-                  <img src={Budget} alt="" />
                 </Link>
               </picture>
             </li>
@@ -84,6 +76,7 @@ function Menu() {
           </ul>
         </nav>
       </div>
+
 
     </>
   );
