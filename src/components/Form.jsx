@@ -1,5 +1,6 @@
-import {  useState, lazy } from "react";
-const AuthImg = lazy(() => import("../images/auth.svg"));
+import { useState, lazy, Suspense } from "react";
+import AuthImg from "../images/auth.svg"
+// const AuthImg = lazy(() => import("../images/auth.svg"));
 import { useNavigate, Link } from "react-router-dom";
 const sendUser = lazy(() => import("../utils/sendUser"));
 import { emailValidation } from "../validations/signUp.validation";
@@ -46,7 +47,7 @@ function Form() {
       <form>
         <div className="form_txt">
           <div className="title_cont">
-           <h2>Sign Up</h2>
+            <h2>Sign Up</h2>
           </div>
           <div>
             <input
@@ -56,7 +57,7 @@ function Form() {
               onChange={(e) => {
                 setUserName(e.target.value);
               }}
-              style={{ background: !err.sta.user ? "#df7f7f" : null }}
+              style={{ borderBottom: !err.sta.user ? "3px solid #df7f7f" : null }}
             />
           </div>
 
@@ -68,7 +69,7 @@ function Form() {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              style={{ background: !err.sta.password ? "#df7f7f" : null }}
+              style={{ borderBottom: !err.sta.password ? "2px solid #df7f7f" : null }}
             ></input>
 
             <i
@@ -86,12 +87,12 @@ function Form() {
               onChange={(e) => {
                 setEmail(e.target.value.trim());
               }}
-              style={{ background: !err.sta.email ? "#df7f7f" : null }}
+              style={{ borderBottom: !err.sta.email ? "2px solid #df7f7f" : null }}
             ></input>
           </div>
           <small
             style={{
-              color: "#e7e3e3",
+              color: "red",
               fontSize: "18px",
               fontWeight: "bold",
               fontStyle: "italic",
@@ -109,7 +110,7 @@ function Form() {
             Sign Up
           </button>
           <p>
-            Don't have an account?
+            Already have an account?
             <span>
               <Link to="/login">Sign In!</Link>
             </span>
