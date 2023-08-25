@@ -29,9 +29,6 @@ function FirstTime() {
           <picture className="first">
             <img src={Main_IMG} alt="main" />
           </picture>
-          <picture className="second">
-            <img src={Second_main_img} alt="main" />
-          </picture>
         </div>
 
         <div className="options_container">
