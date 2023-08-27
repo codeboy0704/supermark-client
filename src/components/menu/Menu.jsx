@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 
-import React, {
-  useStat,
+import logOutIMG from "../../images/menu/logout.png";
+import HomeIMG from "../../images/menu/home.png";
+import UserIMG from "../../images/menu/user.png";
+import CloseIMG from "../../images/menu/close.png"
+import {
   useContext,
   useEffect,
   useState,
@@ -12,10 +15,6 @@ import React, {
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext.jsx";
 import logOut from "../../utils/logOut";
-import logOutIMG from "../../images/menu/logout.png";
-import HomeIMG from "../../images/menu/home.png";
-import UserIMG from "../../images/menu/user.png";
-import CloseIMG from "../../images/menu/close.png"
 function Menu() {
   const data = useContext(UserContext);
   const [menuState, setMenuState] = useState(false);
