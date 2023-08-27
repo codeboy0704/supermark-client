@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "axios";;
 
 const getProductDetails = async ({ setProductDetails, id }) => {
     try {
-        const res = await axios.post('/api/product/get/by/id', { id: id })
-        const data = res.data.data;
+        const res = await axios.get(`/api/product/${id}`)
+        const data = await res.data.data;
         setProductDetails(data)
     } catch (e) {
         console.error(e)

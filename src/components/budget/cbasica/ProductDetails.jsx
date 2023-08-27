@@ -26,10 +26,12 @@ function ProductDetails({ setProductDetails }) {
   }, [locationInfo])
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let match = matchProductsWithEstablishment({ establishments: establishments, product: productDetails })
     setMatchPrices(match);
-    let image = getProductImage(setImage);
+    if (productDetails.image) {
+      getProductImage({ setImage: setImage, id: productDetails.image })
+    }
   }, [establishments, productDetails])
 
   return (
@@ -37,10 +39,9 @@ function ProductDetails({ setProductDetails }) {
       <div className='primal_info'>
         <h1>{productDetails.name}</h1>
         <picture>
-          <img src={image} alt="sal" />  //obtener desde endpoint del api
+          <img src={image} alt="sal" />
         </picture>
       </div>
-      {/* <h2 className='best_prices_title' style={{textAlign: "left"}}>Mejores precios:</h2> */}
       <EstablishmentList establishments={matchPrices} />
     </div>
   )
