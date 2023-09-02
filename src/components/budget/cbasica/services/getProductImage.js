@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const getProductImage = async ({ setImage, id }) => {
+const getProductImage = async (id) => {
     try {
         const res = await axios.get(`/api/image/${id}`)
         const data = await res.data
@@ -8,7 +8,7 @@ const getProductImage = async ({ setImage, id }) => {
         const base64Img = btoa(
             new Uint8Array(image).reduce((data, byte) => data + String.fromCharCode(byte), '')
         )
-        setImage(`data:${res.headers['content-type']};base64,${base64Img}`)
+        return `data:${res.headers['content-type']};base64,${base64Img}`
     } catch (e) {
         console.error(e)
     }
