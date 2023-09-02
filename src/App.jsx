@@ -8,6 +8,8 @@ import { UserContext } from "./context/UserContext";
 import ProductDetailsContext from "./context/ProductDetailsContext";
 import { getUSerLocationData } from "./utils/getUserLocationData";
 import LocationInfoContext from "./context/LocationInfoContext";
+import MainLogo from "./components/MainLogo";
+import Navigation from "./components/Navigation";
 const Home = lazy(() => import("./components/Home/Home"));
 const Form = lazy(() => import("./components/Form"));
 const validation = lazy(() => import("./validations/signUp.validation"));
@@ -20,15 +22,11 @@ const Budget = lazy(() => import("./components/budget/Budget"));
 const CanastaBasica = lazy(() => import("./components/budget/cbasica/CanastaBasica"));
 const GetProductsInformation = lazy(() => import("./components/budget/cbasica/services/getProductsInformation"));
 const ProductDetails = lazy(() => import("./components/budget/cbasica/ProductDetails"));
+const OpcionesCanastaBasica = lazy(() => import("./components/budget/cbasica/Opciones"))
 function App() {
   const [geolocation, setGeoLocation] = useState({ latitude: null, longitude: null });
   const [productDetails, setProductDetails] = useState({});
-  const navigate = useNavigate();
-  const { user } = useContext(UserContext);
-  const [menuOptions, setmenuOptions] = useState({
-    color: "#fff",
-    background: null,
-  });
+  const { user, login } = useContext(UserContext);
 
   useEffect(() => {
     getUSerLocationData(setGeoLocation)
@@ -38,6 +36,7 @@ function App() {
     <ProductDetailsContext.Provider value={productDetails}>
       <LocationInfoContext.Provider value={geolocation}>
         <div className="app_container">
+          <MainLogo />
           <Suspense>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -45,8 +44,9 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/products" element={<Products />} />
               <Route path="/budget" element={<Budget />} />
-              <Route path="/budget/pla/cbasica" element={<CanastaBasica setProductDetails={setProductDetails} />} />
-              <Route path="/budget/pla/cbasica:id" element={<ProductDetails setProductDetails={setProductDetails} />} />
+              <Route path="/pla/cbasica" element={<OpcionesCanastaBasica />} />
+              <Route path="/pla/cbasica/bylocation" element={<CanastaBasica setProductDetails={setProductDetails} />} />
+              <Route path="/budget/pla/cbasica/bylocation/:id" element={<ProductDetails setProductDetails={setProductDetails} />} />
               <Route
                 path="/user:id"
                 element={user ? <Personal data={user} /> : null}
