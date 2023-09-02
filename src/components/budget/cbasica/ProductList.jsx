@@ -1,27 +1,57 @@
 import redirect from '../../../utils/redirect'
 import { useNavigate } from 'react-router-dom'
 import mockImg from "../../../images/budget/canasta_basica/test.jpeg"
+import { useEffect, useState } from 'react';
+import getProductImage from './services/getProductImage';
+import Loading from '../../Loading';
 function ProductList({ arr, setProductDetails }) {
-  const navigate = useNavigate()
-  let mapped = arr.map(el => {
+  const navigate = useNavigate();
+  const [images, setImages] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  const fetchImages = async () => {
+    try {
+      const imagePromises = arr.map(async (el) => {
+        if (el.image) {
+          const image = await getProductImage(el.image);
+          return { ...el, image };
+        }
+        return { ...el, image: mockImg }
+      })
+      const updatedArr = await Promise.all(imagePromises);
+      setImages(updatedArr);
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchImages()
+  }, [arr])
+
+  let mapped = images.map(el => {
     return (
       <div key={el._id} className='product_card'>
         <button onClick={() => {
-          //  let details = getProductDetails( el._id)
           setProductDetails(el)
-          redirect(`/budget/pla/cbasica:${el._id}`, navigate)
+          redirect(`/budget/pla/cbasica/bylocation/:${el._id}`, navigate)
         }} className='product_main'>
           <div className='title_cont'>
             <h2>{el.name}</h2>
           </div>
           <div>
-            <img src={mockImg} alt={el.name} />
+            <img src={el.image} alt={el.name} />
           </div>
         </button>
-
       </div>
     )
   })
+
+  if (loading) {
+    return <Loading />
+  }
   return mapped
 }
 
