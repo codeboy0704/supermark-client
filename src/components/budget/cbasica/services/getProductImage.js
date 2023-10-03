@@ -2,13 +2,10 @@ import axios from "axios"
 
 const getProductImage = async (id) => {
     try {
-        const res = await axios.get(`/api/image/${id}`)
-        const data = await res.data
-        const image = data.data.image.data
-        const base64Img = btoa(
-            new Uint8Array(image).reduce((data, byte) => data + String.fromCharCode(byte), '')
-        )
-        return `data:${res.headers['content-type']};base64,${base64Img}`
+        const res = await axios.get(`/api/image/${id}`, { responseType: 'arraybuffer' })
+        const imageBlob = new Blob([res.data], { type: 'image/jpeg' });
+        const imageUrl = URL.createObjectURL(imageBlob);
+        return imageUrl;
     } catch (e) {
         console.error(e)
     }
