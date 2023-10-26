@@ -12,7 +12,6 @@ function Main() {
   const { user, login } = useContext(UserContext)
   return (
     <div className="home_container">
-      <MainLogo />
       {login ? (
         <>
           <Budget />

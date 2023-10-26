@@ -3,7 +3,7 @@ import "./product.css";
 import { useEffect, useState } from "react";
 import React from "react";
 import Select from "react-select";
-import Modal from "../Modal";
+import Modal from "../OldModal";
 import Add from "../../images/add-new.svg";
 import Search from "../../images/search_item.svg";
 import Table from "./Table";
@@ -35,8 +35,8 @@ function Products() {
       selectedOption.value == "onStock"
         ? { stock: true }
         : selectedOption.value == "outOfStock"
-        ? { stock: false }
-        : { all: true };
+          ? { stock: false }
+          : { all: true };
     const products = getProducts({ options: option });
     setProducts(products);
     setSearchResults([]);

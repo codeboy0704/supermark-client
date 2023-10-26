@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
+
 :root {
   --opt-btn-color: linear-gradient(90deg, rgb(22, 17, 119) 0%, rgb(43, 12, 134) 32%, rgba(68, 0, 255, 1) 100%);
   --main-color: #413d96;
-  --logo-color: #7975db
+  --logo-color: #7975db;
 }
 
 * {
@@ -374,6 +376,91 @@ button {
   margin: 0;
 }
 
+/*Admin Dashboard*/
+.dashboard_product_list {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem;
+}
+
+.dashboard_product_list .dashboard_card {
+  display: flex;
+  flex-flow: column wrap;
+  width: 70%;
+  height: 290px;
+  border-radius: 15%;
+  border: 2px solid var(--logo-color);
+  padding: 0.9rem 0.4rem;
+}
+
+.dashboard_card .main {
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  gap: 3%;
+  height: 82%;
+  width: 99%;
+  border-radius: 25%;
+  background-color: #fff;
+}
+
+.dashboard_card .main .title_cont {
+  max-width: 100%;
+}
+
+.dashboard_card .main .title_cont h2 {
+  font-size: 4.5vw;
+  color: var(--main-color);
+  font-family: 'Open Sans', sans-serif;
+  /* Utiliza una fuente que se ajusta al ancho de la ventana */
+  white-space: nowrap;
+  /* Evita que el texto se divida en varias líneas */
+  overflow: hidden;
+  /* Oculta el contenido que no cabe en el espacio del encabezado */
+  text-overflow: ellipsis;
+  /* Agrega puntos suspensivos (...) cuando el texto se desborda */
+
+}
+
+.dashboard_card .main .image_container {
+  max-width: 100%
+}
+
+.dashboard_card div img {
+  object-fit: cover;
+  width: 200px;
+  height: 180px;
+  border-radius: 30%;
+}
+
+.dashboard_card .card_options {
+  height: 15%;
+  text-align: center;
+}
+
+.dashboard_card .card_options button {
+  border: none;
+  outline: none;
+  background-color: var(--main-color);
+  color: #fff;
+  width: 80px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  transition: all .2s;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+}
+
+.dashboard_card .card_options button:hover {
+  transform: scale(1.1);
+}
+
 /* Tablet design  */
 
 @media (min-width: 550px) {
@@ -390,28 +477,6 @@ button {
     margin: 12px;
   }
 
-  /* .form_container form {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(9, 80px);
-      padding: 0;
-      width: 99%;
-      height: 100%;
-    }
-
-  .form_txt {
-    grid-column: 1/4;
-    grid-row: 1/8;
-    gap: 1.2%;
-    height: 90%;
-  }
-
-  .form_container form picture {
-    grid-column: span 2;
-    grid-row: span 8;
-    width: 70%;
-    padding-top: 30px;
-  } */
 
   /*Personal Section*/
 

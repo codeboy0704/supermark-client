@@ -10,13 +10,13 @@ import { getUSerLocationData } from "./utils/getUserLocationData";
 import LocationInfoContext from "./context/LocationInfoContext";
 import MainLogo from "./components/MainLogo";
 import Navigation from "./components/Navigation";
+import Dashboard from "./components/admin/Dashboard";
 const Home = lazy(() => import("./components/Home/Home"));
 const Form = lazy(() => import("./components/Form"));
 const validation = lazy(() => import("./validations/signUp.validation"));
 const Login = lazy(() => import("./components/Login.jsx"));
 const redirect = lazy(() => import("./utils/redirect"))
 const Products = lazy(() => import("./components/product/Products.jsx"));
-const Modal = lazy(() => import("./components/Modal"));
 const Personal = lazy(() => import("./components/Personal"));
 const Budget = lazy(() => import("./components/budget/Budget"));
 const CanastaBasica = lazy(() => import("./components/budget/cbasica/CanastaBasica"));
@@ -48,9 +48,12 @@ function App() {
               <Route path="/pla/cbasica/bylocation" element={<CanastaBasica setProductDetails={setProductDetails} />} />
               <Route path="/budget/pla/cbasica/bylocation/:id" element={<ProductDetails setProductDetails={setProductDetails} />} />
               <Route
-                path="/user:id"
+                path="/account:id"
                 element={user ? <Personal data={user} /> : null}
               />
+              <Route
+                path="/dashboard:id"
+                element={<Dashboard />} />
             </Routes>
           </Suspense>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../OldModal";
 export default function ProductModal({ setModalState }) {
   const [productName, setProductName] = useState("");
   const [onStock, setOnStock] = useState(0);

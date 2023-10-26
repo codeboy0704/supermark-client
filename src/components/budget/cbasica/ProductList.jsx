@@ -4,6 +4,7 @@ import mockImg from "../../../images/budget/canasta_basica/test.jpeg"
 import { useEffect, useState } from 'react';
 import getProductImage from './services/getProductImage';
 import Loading from '../../Loading';
+import ProductDetails from './ProductDetails';
 function ProductList({ arr, setProductDetails }) {
   const navigate = useNavigate();
   const [images, setImages] = useState([])
@@ -30,6 +31,8 @@ function ProductList({ arr, setProductDetails }) {
   useEffect(() => {
     fetchImages()
   }, [arr])
+
+  console.log(images)
 
   let mapped = images.map(el => {
     return (

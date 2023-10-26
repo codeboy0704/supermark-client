@@ -6,7 +6,7 @@ import redirect from '../../../utils/redirect'
 function Opciones() {
     const navigate = useNavigate();
     return (
-        <div>
+        <div className='cbasic_options_container'>
             <button onClick={() => {
                 redirect('/pla/cbasica/bylocation', navigate)
             }} className='canasta_opt budget_opt'>

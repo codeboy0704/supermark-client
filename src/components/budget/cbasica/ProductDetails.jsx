@@ -15,8 +15,17 @@ function ProductDetails({ setProductDetails }) {
   const id = currentPath.pathname.split(':').pop()
   const [establishments, setEstablishments] = useState([]);
   const [matchPrices, setMatchPrices] = useState([]);
-  const [image, setImage] = useState([])
+  const [image, setImage] = useState(null)
 
+  const getImageOnReload = async (productDetails) => {
+    try {
+      let imageID = await productDetails.image
+      let image = await getProductImage(imageID)
+      setImage(image)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   useLayoutEffect(() => {
     if (!productDetails.length) {
@@ -26,12 +35,14 @@ function ProductDetails({ setProductDetails }) {
   }, [locationInfo])
 
 
+  useEffect(() => {
+    getImageOnReload(productDetails)
+  }, [productDetails])
+
+
   useLayoutEffect(() => {
     let match = matchProductsWithEstablishment({ establishments: establishments, product: productDetails })
     setMatchPrices(match);
-    if (productDetails.image) {
-      getProductImage({ setImage: setImage, id: productDetails.image })
-    }
   }, [establishments, productDetails])
 
   return (
@@ -39,7 +50,7 @@ function ProductDetails({ setProductDetails }) {
       <div className='primal_info'>
         <h1>{productDetails.name}</h1>
         <picture>
-          <img src={image} alt="sal" />
+          <img src={image || null} />
         </picture>
       </div>
       <EstablishmentList establishments={matchPrices} />

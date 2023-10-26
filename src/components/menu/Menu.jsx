@@ -4,6 +4,7 @@ import logOutIMG from "../../images/menu/logout.png";
 import HomeIMG from "../../images/menu/home.png";
 import UserIMG from "../../images/menu/user.png";
 import CloseIMG from "../../images/menu/close.png"
+import AdminIMG from "../../images/menu/admin/32.png"
 import {
   useContext,
   useEffect,
@@ -63,7 +64,7 @@ function Menu() {
           <ul>
             <li className="user">
               <picture className="user_icon">
-                <Link to={`/user:${data.user._id}`}>
+                <Link to={`/account:${data.user._id}`}>
                   <img src={UserIMG} alt="" style={{ cursor: "pointer" }} />
                 </Link>
               </picture>
@@ -75,7 +76,13 @@ function Menu() {
                 </Link>
               </picture>
             </li>
-
+            <li>
+              <picture>
+                <Link to={`/dashboard:${data.user._id}`}>
+                  < img src={AdminIMG} />
+                </Link>
+              </picture>
+            </li>
             <li
               onClick={() => {
                 logOut();

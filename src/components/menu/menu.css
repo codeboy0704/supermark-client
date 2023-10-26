@@ -15,14 +15,14 @@
   margin-right: 0.5rem;
   background-color: var(--logo_container_back);
   border-radius: 25px;
-  padding: 0.2rem;
+  padding: 0.1rem;
   transition: all 4s ease-in;
 }
 
 .menu_container.expand {
   display: flex;
   height: max-content;
-  height: 260px;
+  height: 310px;
   width: 60px;
 }
 
@@ -56,7 +56,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   list-style: none;
   padding: 0;
   margin: 0;

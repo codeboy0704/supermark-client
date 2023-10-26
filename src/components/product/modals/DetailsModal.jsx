@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import Modal from "../../Modal";
+import Modal from "../../OldModal";
 export default function DetailsModal({ details, detailsState }) {
   const [name, setName] = useState(details.name);
   const [stock, setStock] = useState(details.stock.quantity);

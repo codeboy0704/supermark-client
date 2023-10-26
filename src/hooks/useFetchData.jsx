@@ -8,7 +8,6 @@ const useFetchData = (token) => {
   const navigate = useNavigate();
   const [login, setLogin] = useState(false);
   const [userData, setUserData] = useState({ user: {} });
-  console.log(userData)
 
   const getInfo = async () => {
     try {
@@ -21,7 +20,6 @@ const useFetchData = (token) => {
       if (req.status === 201) {
         const res = await req.data;
         const data = res.data.user
-        console.log(data)
         setUserData({ user: data })
         setLogin(true);
       }

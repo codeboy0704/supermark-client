@@ -2,17 +2,17 @@ import { useNavigate } from "react-router-dom";
 import ByBudgetIMG from "../../../images/budget/de_acuerdo_precio/64.svg"
 import redirect from "../../../utils/redirect"
 function ByBudget() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
-    <button className='by_budget_opt budget_opt' onClick={()=>{
-        redirect('/budget/pla/precio', navigate)
+    <button className='by_budget_opt budget_opt' onClick={() => {
+      redirect('/budget/pla/precio', navigate)
     }}>
-        <div>
-            <h2>De acuerdo a presupuesto</h2>
-        </div>
-        <div>
-            <img src={ByBudgetIMG} alt='presupuesto' />
-        </div>
+      <div>
+        <h2>Para mí</h2>
+      </div>
+      <div>
+        <img src={ByBudgetIMG} alt='presupuesto' />
+      </div>
     </button>
   )
 }

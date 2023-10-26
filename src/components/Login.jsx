@@ -5,9 +5,6 @@ import LoginImg from "../images/login.svg";
 // eslint-disable-next-line no-unused-vars
 import redirect from "../utils/redirect";
 import { searchUser } from "../utils/searchUser";
-// const searchUser = lazy(() => import("../utils/searchUser").then(module =>({
-//   default: module.searchUser
-// })));
 function Login() {
   const navigate = useNavigate();
   const [username, setUserName] = useState("");
@@ -24,7 +21,7 @@ function Login() {
         style={{ background: "#fff" }}
         onSubmit={(e) => {
           e.preventDefault();
-          searchUser({user: userInfo, path: "/api/login", setErr});
+          searchUser({ user: userInfo, path: "/api/login", setErr });
         }}
       >
         <div className="login_txt">
