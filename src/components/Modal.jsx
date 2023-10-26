@@ -1,17 +1,33 @@
-import { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-const modalRoot = document.getElementById("modal_root");
-function Modal({ children }) {
-  const elRef = useRef(null);
-  if (!elRef.current) {
-    elRef.current = document.createElement("div");
-    elRef.current.className = "overlay";
-  }
-  useEffect(() => {
-    modalRoot.appendChild(elRef.current);
-    return () => modalRoot.removeChild(elRef.current);
-  });
-  return createPortal(<div className="modal">{children}</div>, elRef.current);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: "100%",
+        height: "50%"
+    },
+};
+
+function ModalComponent({ isOpen, toggle, children }) {
+    Modal.setAppElement('#modal_root')
+    return (
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={toggle}
+            style={customStyles}
+            contentLabel='Example modal'
+        >
+            {children}
+        </Modal>
+    )
 }
 
-export default Modal;
+export default ModalComponent
+
