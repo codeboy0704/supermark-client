@@ -1,6 +1,7 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 export default async function logOut() {
-  let cookie = document.cookie.replace("token=", "");
+  let cookie = Cookies.get('token')
   try {
     const req = await axios("/api/logout", {
       method: "DELETE",
@@ -8,10 +9,11 @@ export default async function logOut() {
         token: cookie,
       },
     });
-    const newToken = await req.data.token;
-    document.cookie = `token=${newToken}`;
+    Cookies.remove('token')
     if (req.status == 201) {
-      return (window.location.href = "/");
+      setTimeout(() => {
+        window.location.href = '/'
+      }, 200)
     } else {
       console.log(req.data.message);
     }
