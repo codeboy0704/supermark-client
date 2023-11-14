@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import redirect from "../../utils/redirect";
-import { UserContext } from "../../context/UserContext";
 import Main_IMG from "../../images/welcome/credit_card.svg";
 import Second_main_img from "../../images/welcome/undraw_savings_re_eq4w.svg";
 import SavedTime from "./about/SaveTime";

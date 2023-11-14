@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FileDrop from './DragAndDrop'
 
 function OnEdit({ details }) {
@@ -24,8 +24,10 @@ function OnEdit({ details }) {
                 <input type='text' readOnly value={`Last update: ${details.updatedAt}`}></input>
                 <input type='text' readOnly value={`ID: ${details._id}`} />
             </div>
-            <button style={{ background: detectChange ? "#7975db" : "#b4b2fd" }}>Save</button>
-
+            <div className='on_edit_opt'>
+                <button style={{ background: detectChange ? "#7975db" : "#b4b2fd" }}>Save</button>
+                <button style={{ background: "#7975db" }}>Delete</button>
+            </div>
         </form>
     )
 }

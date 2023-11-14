@@ -6,7 +6,6 @@ import LoginImg from "../images/login.svg";
 import redirect from "../utils/redirect";
 import { searchUser } from "../utils/searchUser";
 function Login() {
-  const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState({
@@ -69,7 +68,7 @@ function Login() {
           <p>
             Don't have an account?
             <span>
-              <Link to="/signup">Sign Up!</Link>
+              <Link to="/register">Sign Up!</Link>
             </span>
           </p>
         </div>

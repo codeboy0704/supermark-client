@@ -4,18 +4,21 @@ import { useContext, useEffect, useLayoutEffect, useState, lazy, Suspense, creat
 import "./App.css";
 import "./components/budget/budget.css";
 import "./components/menu/menu.css"
-import { UserContext } from "./context/UserContext";
+
 import ProductDetailsContext from "./context/ProductDetailsContext";
 import { getUSerLocationData } from "./utils/getUserLocationData";
 import LocationInfoContext from "./context/LocationInfoContext";
 import MainLogo from "./components/MainLogo";
-import Navigation from "./components/Navigation";
 import Dashboard from "./components/admin/Dashboard";
+import Cookies from "js-cookie";
 const Home = lazy(() => import("./components/Home/Home"));
 const Form = lazy(() => import("./components/Form"));
 const validation = lazy(() => import("./validations/signUp.validation"));
 const Login = lazy(() => import("./components/Login.jsx"));
-const redirect = lazy(() => import("./utils/redirect"))
+import redirect from "./utils/redirect"
+import { verifyToken } from "./utils/verifyToken";
+import verifyUserToBeAdmin from "./utils/verifyAdmin";
+import Menu from "./components/menu/Menu";
 const Products = lazy(() => import("./components/product/Products.jsx"));
 const Personal = lazy(() => import("./components/Personal"));
 const Budget = lazy(() => import("./components/budget/Budget"));
@@ -24,9 +27,16 @@ const GetProductsInformation = lazy(() => import("./components/budget/cbasica/se
 const ProductDetails = lazy(() => import("./components/budget/cbasica/ProductDetails"));
 const OpcionesCanastaBasica = lazy(() => import("./components/budget/cbasica/Opciones"))
 function App() {
+  const navigation = useNavigate()
+  const token = Cookies.get('token')
   const [geolocation, setGeoLocation] = useState({ latitude: null, longitude: null });
   const [productDetails, setProductDetails] = useState({});
-  const { user, login } = useContext(UserContext);
+  const [login, setLogin] = useState(false)
+
+  useLayoutEffect(() => {
+    let verify = verifyToken(token)
+    verify ? setLogin(true) : redirect('/', navigation)
+  }, [token])
 
   useEffect(() => {
     getUSerLocationData(setGeoLocation)
@@ -37,10 +47,11 @@ function App() {
       <LocationInfoContext.Provider value={geolocation}>
         <div className="app_container">
           <MainLogo />
+          {login && <Menu />}
           <Suspense>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/signup" element={<Form />} />
+              <Route path="/register" element={<Form />} />
               <Route path="/login" element={<Login />} />
               <Route path="/products" element={<Products />} />
               <Route path="/budget" element={<Budget />} />
@@ -48,11 +59,11 @@ function App() {
               <Route path="/pla/cbasica/bylocation" element={<CanastaBasica setProductDetails={setProductDetails} />} />
               <Route path="/budget/pla/cbasica/bylocation/:id" element={<ProductDetails setProductDetails={setProductDetails} />} />
               <Route
-                path="/account:id"
-                element={user ? <Personal data={user} /> : null}
+                path="/account:token"
+                element={<Personal />}
               />
               <Route
-                path="/dashboard:id"
+                path="/dashboard:token"
                 element={<Dashboard />} />
             </Routes>
           </Suspense>

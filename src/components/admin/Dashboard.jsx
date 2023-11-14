@@ -15,7 +15,8 @@ function Dashboard() {
         setOnLoad(true)
         const req = await axios.get(`/api/product/many/${page}/${limit}`)
         const res = await req.data
-        setProducts(res.data.data)
+        const data = await res.data.data
+        setProducts(data)
         setTotalPages(res.data.total)
         setOnLoad(false)
     }

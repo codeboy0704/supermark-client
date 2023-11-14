@@ -12,12 +12,14 @@ function CanastaBasica({ setProductDetails }) {
     const [limit, setLimit] = useState(10)
     const [totalPages, setTotalPages] = useState(0)
     const getProducts = async () => {
-        const req = await axios.get(`/api/product/many/${page}/${limit}`)
+        const req = await axios.get(`/api/product/${page}/${limit}`)
         const res = await req.data
-        setProducts(res.data.data)
+        const data = await res.data.data
+        setProducts(data)
         setTotalPages(res.data.total)
     }
     useEffect(() => {
+        setProducts([])
         getProducts()
     }, [page])
 
@@ -25,7 +27,7 @@ function CanastaBasica({ setProductDetails }) {
         <>
             {locationInfo.latitude || locationInfo.longitude ? (
                 <div className='canasta_basica_cont'>
-                    {products.length > 1 ? (
+                    {products.length > 0 ? (
                         <>
                             <ProductList arr={products} setProductDetails={setProductDetails} />
                             <div className='page_options'>

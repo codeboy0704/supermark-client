@@ -1,6 +1,6 @@
 import redirect from '../../../utils/redirect'
 import { useNavigate } from 'react-router-dom'
-import mockImg from "../../../images/budget/canasta_basica/test.jpeg"
+import DefaultImage from "../../../images/default.png"
 import { useEffect, useState } from 'react';
 import getProductImage from './services/getProductImage';
 import Loading from '../../Loading';
@@ -14,10 +14,11 @@ function ProductList({ arr, setProductDetails }) {
     try {
       const imagePromises = arr.map(async (el) => {
         if (el.image) {
+          console.log(`Product: ${el.name}, image: ${el.image}`)
           const image = await getProductImage(el.image);
-          return { ...el, image };
+          return { ...el, image: image ? image : DefaultImage };
         }
-        return { ...el, image: mockImg }
+        return { ...el, image: DefaultImage }
       })
       const updatedArr = await Promise.all(imagePromises);
       setImages(updatedArr);

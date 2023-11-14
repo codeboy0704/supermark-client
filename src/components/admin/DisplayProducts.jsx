@@ -2,14 +2,13 @@ import React, { useEffect, useState, useContext } from 'react'
 import Loading from '../Loading'
 import DefaultImage from "../../images/default.png"
 import getProductImage from '../budget/cbasica/services/getProductImage'
-import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import redirect from '../../utils/redirect'
 import ModalComponent from '../Modal'
+import OnEdit from './OnEdit'
 function DisplayProducts({ arr }) {
     const [images, setImages] = useState([])
     const [loading, setLoading] = useState(true)
-    const { user, login } = useContext(UserContext);
     const [modalIsOpen, setIsOpen] = useState(false)
     const [details, setDetails] = useState({})
     const [productName, setProductName] = useState("")
@@ -22,7 +21,7 @@ function DisplayProducts({ arr }) {
             const imagePromises = arr.map(async (el) => {
                 if (el.image) {
                     const image = await getProductImage(el.image);
-                    return { ...el, image };
+                    return { ...el, image: image || DefaultImage };
                 }
                 return { ...el, image: DefaultImage }
             })
@@ -56,8 +55,8 @@ function DisplayProducts({ arr }) {
                     <button onClick={() => {
                         switchModalState()
                         setDetails(el)
+                        console.log(el)
                     }}>Edit</button>
-                    <button>Delete</button>
                 </div>
             </div>
         )
@@ -70,12 +69,7 @@ function DisplayProducts({ arr }) {
                 <>
                     {mapProducts}
                     <ModalComponent isOpen={modalIsOpen} toggle={switchModalState}>
-                        <form className='edit_product_container'>
-                            <input type='file' />
-                            <input placeholder="Product Name" value={productName} onChange={(e) => {
-                                setProductName(e.target.value.trim())
-                            }} />
-                        </form>
+                        <OnEdit details={details} />
                     </ModalComponent>
                 </>
 

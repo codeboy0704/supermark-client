@@ -528,15 +528,17 @@ button {
   outline: none;
   padding: 0.2rem;
   transform: scale(1.1);
-
 }
 
-.edit_product_container button {
+.edit_product_container .on_edit_opt {
+  text-align: center;
+}
+
+.edit_product_container .on_edit_opt button {
   width: 120px;
   text-align: center;
-  margin: 0.2rem auto;
+  margin: 0.2rem 0.3rem;
   padding: 0.7rem 0.2rem;
-
   border: none;
   border-radius: 0.3rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

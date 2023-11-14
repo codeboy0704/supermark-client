@@ -1,25 +1,33 @@
-/* eslint-disable no-unused-vars */
-import { createContext, useLayoutEffect, lazy, Suspense, useState } from "react";
-import App from "../App.jsx";
-import Menu from "../components/menu/Menu.jsx"
-import useFetchData from "../hooks/useFetchData.jsx";
-import validation from "../validations/signUp.validation.js";
-export const UserContext = createContext({
-  data: {},
-  login: false,
-});
+import Cookies from 'js-cookie';
+import React, { createContext, useState, useEffect } from 'react'
+import getUserByToken from '../utils/getUserByToken';
+import App from '../App';
+import redirect from '../utils/redirect';
+import { useNavigate, useNavigation } from 'react-router-dom';
+export const UserContext = createContext();
 
-function UserProvider() {
-  const token = document.cookie.replace("token=", "");
-  const local = validation.inLocal({ key: "user" });
-  const { user } = useFetchData(token);
-  let isLogin = user.login
-  return (
-    <UserContext.Provider value={user}>
-      {isLogin && <Menu />}
-      <App />
-    </UserContext.Provider>
-  );
+export function UserProvider() {
+    const token = Cookies.get('token')
+    const navigation = useNavigate()
+    const [userData, setUserData] = useState({})
+    async function fetchData() {
+        try {
+            if (token) {
+                let data = await getUserByToken(token);
+                setUserData(data);
+            }
+        } catch (e) {
+            redirect('/login', navigation)
+            console.error(e)
+        }
+
+    }
+    useEffect(() => {
+        fetchData()
+    }, [])
+    return (
+        <UserContext.Provider value={userData}>
+            <App />
+        </UserContext.Provider>
+    )
 }
-
-export default UserProvider;

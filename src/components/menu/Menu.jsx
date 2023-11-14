@@ -13,11 +13,13 @@ import {
   lazy,
   Suspense
 } from "react";
-import { Link } from "react-router-dom";
-import { UserContext } from "../../context/UserContext.jsx";
+import { Link, useNavigate } from "react-router-dom";
 import logOut from "../../utils/logOut";
+import verifyUserToBeAdmin from "../../utils/verifyAdmin";
+import Cookies from "js-cookie";
+import redirect from "../../utils/redirect";
 function Menu() {
-  const data = useContext(UserContext);
+  const token = Cookies.get('token')
   const [menuState, setMenuState] = useState(false);
   const RenderClose = () => {
     return (
@@ -64,7 +66,7 @@ function Menu() {
           <ul>
             <li className="user">
               <picture className="user_icon">
-                <Link to={`/account:${data.user._id}`}>
+                <Link to={`/account:${token.toLowerCase()}`}>
                   <img src={UserIMG} alt="" style={{ cursor: "pointer" }} />
                 </Link>
               </picture>
@@ -78,7 +80,7 @@ function Menu() {
             </li>
             <li>
               <picture>
-                <Link to={`/dashboard:${data.user._id}`}>
+                <Link to={`/dashboard:${token.toLowerCase()}`}>
                   < img src={AdminIMG} />
                 </Link>
               </picture>
