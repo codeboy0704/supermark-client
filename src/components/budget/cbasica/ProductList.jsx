@@ -10,30 +10,28 @@ function ProductList({ arr, setProductDetails }) {
   const [images, setImages] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const fetchImages = async () => {
-    try {
-      const imagePromises = arr.map(async (el) => {
-        if (el.image) {
-          console.log(`Product: ${el.name}, image: ${el.image}`)
-          const image = await getProductImage(el.image);
-          return { ...el, image: image ? image : DefaultImage };
-        }
-        return { ...el, image: DefaultImage }
-      })
-      const updatedArr = await Promise.all(imagePromises);
-      setImages(updatedArr);
-    } catch (e) {
-      console.error(e)
-    } finally {
-      setLoading(false)
-    }
-  }
+  // const fetchImages = async () => {
+  //   try {
+  //     const imagePromises = arr.map(async (el) => {
+  //       if (el.image) {
+  //         console.log(`Product: ${el.name}, image: ${el.image}`)
+  //         const image = await getProductImage(el.image);
+  //         return { ...el, image: image ? image : DefaultImage };
+  //       }
+  //       return { ...el, image: DefaultImage }
+  //     })
+  //     const updatedArr = await Promise.all(imagePromises);
+  //     setImages(updatedArr);
+  //   } catch (e) {
+  //     console.error(e)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
-  useEffect(() => {
-    fetchImages()
-  }, [arr])
-
-  console.log(images)
+  // useEffect(() => {
+  //   fetchImages()
+  // }, [arr])
 
   let mapped = images.map(el => {
     return (
@@ -46,7 +44,7 @@ function ProductList({ arr, setProductDetails }) {
             <h2>{el.name}</h2>
           </div>
           <div>
-            <img src={el.image} alt={el.name} />
+            <img src={DefaultImage} alt={el.name} />
           </div>
         </button>
       </div>
